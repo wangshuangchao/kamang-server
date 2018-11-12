@@ -1,0 +1,36 @@
+body{overflow-x: hidden; margin:0 auto;padding:0;max-width: 7.5rem;text-align: center;color: #333333;}
+h4{ width: 2.87rem;font-size: 0.33rem;color: #333333;position: relative;margin: 0 auto;}
+h4 span{display: block;border-left:0.27rem solid transparent; border-right:0.27rem solid transparent;position:absolute;}
+h4 .span1{border-bottom:0.27rem solid #ffd409;top:-0.43rem;left:41%;}
+h4 .span2{border-top:0.27rem solid #ffd409;bottom:-0.43rem;right:40%}
+.topDiv{width:100%;height:16.65rem;background-image: url("/images/topDivBg.png");background-size:cover;overflow:hidden;text-align: center;}
+.topDiv span{width:0.8rem;height:8px;background-color: #ffd409;border-radius: 10px;display: inline-block;margin-top: 10.77rem;}
+.topDiv div,.wrongDiv div{width:2.74rem;border-bottom: 1px solid #333333;border-top: 1px solid #333333;line-height: 0.53rem;font-size:0.32rem;color:#333333;font-weight: 600;margin:0.3rem auto 0 auto;}
+.topDiv p{font-size: 0.26rem;line-height: 0.38rem;margin: 0.59rem auto 0 auto;}
+.topDiv .topDivP1{width:3.7rem;}
+.topDiv .topDivP2{width:4.02rem;}
+.topDiv .topDivP3{width:4.53rem;}
+.sunlight{width:100%;height:4.5rem;background-image: url("/images/sunlight.png");background-size: cover;}
+.wrongDiv{width:100%;height:12.91rem;text-align: center;background-image: url("/images/wrong.png");background-size: cover;overflow:hidden;}
+.wrongDiv div{margin-top: 0.9rem;margin-bottom: 0.66rem;}
+.wrongDiv p{width:4rem;font-size: 0.26rem;line-height: 0.38rem;margin:0 auto 0.09rem auto;color:#333333;}
+.wrongDiv .wrongDivP{margin-bottom: 0.44rem;}
+.guideDiv{width:100%;height:2.56rem;border-top:4px solid #ffd409;border-bottom: 4px solid #ffd409;font-size: 0.26rem;color:#333333;font-weight:600;box-sizing: border-box;}
+.guideDiv .lastP{width:3.73rem;height:0.6rem;background-color: #ffd409;line-height: 0.6rem;margin:0 auto;text-align: center;border-radius: 10px;}
+.flowDiv {width:100%;height:8.88rem;background-image: url("/images/guide1.png");background-size: cover;overflow: hidden;padding-top:1.29rem;overflow: hidden;padding-top: 1.29rem;box-sizing: border-box;}
+.flowDiv .h4_2{margin-top: 1rem;}
+.flowDiv .p1{width:4.75rem;font-size: 0.26rem;line-height: 0.49rem;margin: 0.7rem auto 0 auto;}
+.flowDiv .p2{width:3.85rem;font-size: 0.26rem;line-height: 0.49rem;margin: 0.43rem auto 0 auto;}
+.flowDiv .p3{width:3.58rem;font-size: 0.26rem;margin: 0.9rem auto 0 auto;}
+.flowDiv .p4{width:3.22rem;font-size: 0.26rem;margin: 0.42rem auto  0 auto;}
+.flowDiv p span{font-weight: 600}
+.flowDiv p span.span3{width:0.75rem;height:0.4rem;line-height: 0.4rem;background-color:#ffd409;border-radius: 5px;display: inline-block;font-weight: 500;}
+.imgDiv{width:100%;height:4.1rem;background-image: url("/images/guide2.png");background-size: cover;}
+.timeDiv{width:100%;height:3.78rem;padding-top: 1.2rem;box-sizing: border-box;overflow:hidden; }
+.timeDiv p{font-size: 0.26rem;margin-top: 0.81rem}
+.downloadDiv{width:100%;height:5.16rem;box-sizing: border-box;overflow:hidden;background-image: url("/images/downloadBg.png");background-size: cover;padding-top: 1.32rem;}
+.downloadDiv ul{width:5rem;height:2.43rem;margin:0 auto;display: flex;justify-content: space-between;padding:0;}
+.downloadDiv ul li{list-style: none;width:1.86rem;height:100%;}
+.downloadDiv ul li img{width:100%;height:100%;}
+.footerDiv{width:100%;height:1.5rem;font-size: 0.16rem;color:#333333;text-align: center;padding-top: 0.2rem;box-sizing: border-box;}
+

@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mugua.core.brokenlist.mapper.BrokenlistInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.mugua.core.brokenlist.pojo.BrokenlistInfo" >
+    <id column="BROKEN_ID" property="brokenId" jdbcType="INTEGER" />
+    <result column="COMPANY" property="company" jdbcType="VARCHAR" />
+    <result column="RECORD_TYPE" property="recordType" jdbcType="VARCHAR" />
+    <result column="ORIGANIZATION_CODE" property="origanizationCode" jdbcType="VARCHAR" />
+    <result column="EXT" property="ext" jdbcType="VARCHAR" />
+    <result column="OPERNAME" property="opername" jdbcType="VARCHAR" />
+    <result column="CREDITCODE" property="creditcode" jdbcType="VARCHAR" />
+    <result column="LINE_HOUR" property="lineHour" jdbcType="DATE" />
+    <result column="LINE_NUMBER" property="lineNumber" jdbcType="VARCHAR" />
+    <result column="TABLE_NUMBER" property="tableNumber" jdbcType="VARCHAR" />
+    <result column="LINE_COURT" property="lineCourt" jdbcType="VARCHAR" />
+    <result column="EXT_ONE" property="extOne" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    BROKEN_ID, COMPANY, RECORD_TYPE, ORIGANIZATION_CODE, EXT, OPERNAME, CREDITCODE, LINE_HOUR, 
+    LINE_NUMBER, TABLE_NUMBER, LINE_COURT, EXT_ONE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mugua.core.brokenlist.pojo.BrokenlistInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from brokenlist_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from brokenlist_info
+    where BROKEN_ID = #{brokenId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from brokenlist_info
+    where BROKEN_ID = #{brokenId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mugua.core.brokenlist.pojo.BrokenlistInfoExample" >
+    delete from brokenlist_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mugua.core.brokenlist.pojo.BrokenlistInfo" >
+    insert into brokenlist_info (BROKEN_ID, COMPANY, RECORD_TYPE, 
+      ORIGANIZATION_CODE, EXT, OPERNAME, 
+      CREDITCODE, LINE_HOUR, LINE_NUMBER, 
+      TABLE_NUMBER, LINE_COURT, EXT_ONE
+      )
+    values (#{brokenId,jdbcType=INTEGER}, #{company,jdbcType=VARCHAR}, #{recordType,jdbcType=VARCHAR}, 
+      #{origanizationCode,jdbcType=VARCHAR}, #{ext,jdbcType=VARCHAR}, #{opername,jdbcType=VARCHAR}, 
+      #{creditcode,jdbcType=VARCHAR}, #{lineHour,jdbcType=DATE}, #{lineNumber,jdbcType=VARCHAR}, 
+      #{tableNumber,jdbcType=VARCHAR}, #{lineCourt,jdbcType=VARCHAR}, #{extOne,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mugua.core.brokenlist.pojo.BrokenlistInfo" >
+    insert into brokenlist_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="brokenId != null" >
+        BROKEN_ID,
+      </if>
+      <if test="company != null" >
+        COMPANY,
+      </if>
+      <if test="recordType != null" >
+        RECORD_TYPE,
+      </if>
+      <if test="origanizationCode != null" >
+        ORIGANIZATION_CODE,
+      </if>
+      <if test="ext != null" >
+        EXT,
+      </if>
+      <if test="opername != null" >
+        OPERNAME,
+      </if>
+      <if test="creditcode != null" >
+        CREDITCODE,
+      </if>
+      <if test="lineHour != null" >
+        LINE_HOUR,
+      </if>
+      <if test="lineNumber != null" >
+        LINE_NUMBER,
+      </if>
+      <if test="tableNumber != null" >
+        TABLE_NUMBER,
+      </if>
+      <if test="lineCourt != null" >
+        LINE_COURT,
+      </if>
+      <if test="extOne != null" >
+        EXT_ONE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="brokenId != null" >
+        #{brokenId,jdbcType=INTEGER},
+      </if>
+      <if test="company != null" >
+        #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="recordType != null" >
+        #{recordType,jdbcType=VARCHAR},
+      </if>
+      <if test="origanizationCode != null" >
+        #{origanizationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ext != null" >
+        #{ext,jdbcType=VARCHAR},
+      </if>
+      <if test="opername != null" >
+        #{opername,jdbcType=VARCHAR},
+      </if>
+      <if test="creditcode != null" >
+        #{creditcode,jdbcType=VARCHAR},
+      </if>
+      <if test="lineHour != null" >
+        #{lineHour,jdbcType=DATE},
+      </if>
+      <if test="lineNumber != null" >
+        #{lineNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="tableNumber != null" >
+        #{tableNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="lineCourt != null" >
+        #{lineCourt,jdbcType=VARCHAR},
+      </if>
+      <if test="extOne != null" >
+        #{extOne,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mugua.core.brokenlist.pojo.BrokenlistInfoExample" resultType="java.lang.Integer" >
+    select count(*) from brokenlist_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update brokenlist_info
+    <set >
+      <if test="record.brokenId != null" >
+        BROKEN_ID = #{record.brokenId,jdbcType=INTEGER},
+      </if>
+      <if test="record.company != null" >
+        COMPANY = #{record.company,jdbcType=VARCHAR},
+      </if>
+      <if test="record.recordType != null" >
+        RECORD_TYPE = #{record.recordType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.origanizationCode != null" >
+        ORIGANIZATION_CODE = #{record.origanizationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ext != null" >
+        EXT = #{record.ext,jdbcType=VARCHAR},
+      </if>
+      <if test="record.opername != null" >
+        OPERNAME = #{record.opername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creditcode != null" >
+        CREDITCODE = #{record.creditcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lineHour != null" >
+        LINE_HOUR = #{record.lineHour,jdbcType=DATE},
+      </if>
+      <if test="record.lineNumber != null" >
+        LINE_NUMBER = #{record.lineNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tableNumber != null" >
+        TABLE_NUMBER = #{record.tableNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lineCourt != null" >
+        LINE_COURT = #{record.lineCourt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extOne != null" >
+        EXT_ONE = #{record.extOne,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update brokenlist_info
+    set BROKEN_ID = #{record.brokenId,jdbcType=INTEGER},
+      COMPANY = #{record.company,jdbcType=VARCHAR},
+      RECORD_TYPE = #{record.recordType,jdbcType=VARCHAR},
+      ORIGANIZATION_CODE = #{record.origanizationCode,jdbcType=VARCHAR},
+      EXT = #{record.ext,jdbcType=VARCHAR},
+      OPERNAME = #{record.opername,jdbcType=VARCHAR},
+      CREDITCODE = #{record.creditcode,jdbcType=VARCHAR},
+      LINE_HOUR = #{record.lineHour,jdbcType=DATE},
+      LINE_NUMBER = #{record.lineNumber,jdbcType=VARCHAR},
+      TABLE_NUMBER = #{record.tableNumber,jdbcType=VARCHAR},
+      LINE_COURT = #{record.lineCourt,jdbcType=VARCHAR},
+      EXT_ONE = #{record.extOne,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mugua.core.brokenlist.pojo.BrokenlistInfo" >
+    update brokenlist_info
+    <set >
+      <if test="company != null" >
+        COMPANY = #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="recordType != null" >
+        RECORD_TYPE = #{recordType,jdbcType=VARCHAR},
+      </if>
+      <if test="origanizationCode != null" >
+        ORIGANIZATION_CODE = #{origanizationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ext != null" >
+        EXT = #{ext,jdbcType=VARCHAR},
+      </if>
+      <if test="opername != null" >
+        OPERNAME = #{opername,jdbcType=VARCHAR},
+      </if>
+      <if test="creditcode != null" >
+        CREDITCODE = #{creditcode,jdbcType=VARCHAR},
+      </if>
+      <if test="lineHour != null" >
+        LINE_HOUR = #{lineHour,jdbcType=DATE},
+      </if>
+      <if test="lineNumber != null" >
+        LINE_NUMBER = #{lineNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="tableNumber != null" >
+        TABLE_NUMBER = #{tableNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="lineCourt != null" >
+        LINE_COURT = #{lineCourt,jdbcType=VARCHAR},
+      </if>
+      <if test="extOne != null" >
+        EXT_ONE = #{extOne,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where BROKEN_ID = #{brokenId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mugua.core.brokenlist.pojo.BrokenlistInfo" >
+    update brokenlist_info
+    set COMPANY = #{company,jdbcType=VARCHAR},
+      RECORD_TYPE = #{recordType,jdbcType=VARCHAR},
+      ORIGANIZATION_CODE = #{origanizationCode,jdbcType=VARCHAR},
+      EXT = #{ext,jdbcType=VARCHAR},
+      OPERNAME = #{opername,jdbcType=VARCHAR},
+      CREDITCODE = #{creditcode,jdbcType=VARCHAR},
+      LINE_HOUR = #{lineHour,jdbcType=DATE},
+      LINE_NUMBER = #{lineNumber,jdbcType=VARCHAR},
+      TABLE_NUMBER = #{tableNumber,jdbcType=VARCHAR},
+      LINE_COURT = #{lineCourt,jdbcType=VARCHAR},
+      EXT_ONE = #{extOne,jdbcType=VARCHAR}
+    where BROKEN_ID = #{brokenId,jdbcType=INTEGER}
+  </update>
+</mapper>

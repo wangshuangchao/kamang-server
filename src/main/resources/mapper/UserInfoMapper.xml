@@ -1,0 +1,771 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mugua.core.userInfo.mapper.UserInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.mugua.core.userInfo.pojo.UserInfo" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+    <result column="USER_GENDER" property="userGender" jdbcType="TINYINT" />
+    <result column="USER_AGE" property="userAge" jdbcType="INTEGER" />
+    <result column="USER_PHONE" property="userPhone" jdbcType="VARCHAR" />
+    <result column="COMPANY" property="company" jdbcType="VARCHAR" />
+    <result column="USER_PASSWORD" property="userPassword" jdbcType="VARCHAR" />
+    <result column="PHOTO_URL" property="photoUrl" jdbcType="VARCHAR" />
+    <result column="IS_CENTIFICATION" property="isCentification" jdbcType="TINYINT" />
+    <result column="DEPARTMENT" property="department" jdbcType="VARCHAR" />
+    <result column="QQ" property="qq" jdbcType="VARCHAR" />
+    <result column="WECHAT" property="wechat" jdbcType="VARCHAR" />
+    <result column="PRODUCT_URL_ONE" property="productUrlOne" jdbcType="VARCHAR" />
+    <result column="MICROBLOG" property="microblog" jdbcType="VARCHAR" />
+    <result column="PRODUCT_URL_TWO" property="productUrlTwo" jdbcType="VARCHAR" />
+    <result column="COMPANY_VIDIO" property="companyVidio" jdbcType="VARCHAR" />
+    <result column="EXT" property="ext" jdbcType="VARCHAR" />
+    <result column="BUSINESS_LICENSE_PHOTO_URL" property="businessLicensePhotoUrl" jdbcType="VARCHAR" />
+    <result column="LEGAL_PERSON_NAME" property="legalPersonName" jdbcType="VARCHAR" />
+    <result column="ORGANIZATION_CODE" property="organizationCode" jdbcType="VARCHAR" />
+    <result column="REGISTERED_ASSETS" property="registeredAssets" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_USER_TIME" property="createUserTime" jdbcType="TIMESTAMP" />
+    <result column="COMPANY_TYPE" property="companyType" jdbcType="VARCHAR" />
+    <result column="COMPANY_ADDR" property="companyAddr" jdbcType="VARCHAR" />
+    <result column="TIME_LIMIT" property="timeLimit" jdbcType="TIMESTAMP" />
+    <result column="SCOPE_OF_BUSINESS" property="scopeOfBusiness" jdbcType="VARCHAR" />
+    <result column="BOOKINGS" property="bookings" jdbcType="VARCHAR" />
+    <result column="EXTS" property="exts" jdbcType="VARCHAR" />
+    <result column="LEGAL_PERSON_ID" property="legalPersonId" jdbcType="VARCHAR" />
+    <result column="LEGAL_PERSON_PHONE" property="legalPersonPhone" jdbcType="VARCHAR" />
+    <result column="LEGAL_PERSON_PHOTO_URL" property="legalPersonPhotoUrl" jdbcType="VARCHAR" />
+    <result column="ATTENDING_PERSONNEL" property="attendingPersonnel" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.mugua.core.userInfo.pojo.UserInfo" extends="BaseResultMap" >
+    <result column="INTRODUCE_COMPANY" property="introduceCompany" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, USER_NAME, USER_GENDER, USER_AGE, USER_PHONE, COMPANY, USER_PASSWORD, PHOTO_URL, 
+    IS_CENTIFICATION, DEPARTMENT, QQ, WECHAT, PRODUCT_URL_ONE, MICROBLOG, PRODUCT_URL_TWO, 
+    COMPANY_VIDIO, EXT, BUSINESS_LICENSE_PHOTO_URL, LEGAL_PERSON_NAME, ORGANIZATION_CODE, 
+    REGISTERED_ASSETS, CREATE_TIME, CREATE_USER_TIME, COMPANY_TYPE, COMPANY_ADDR, TIME_LIMIT, 
+    SCOPE_OF_BUSINESS, BOOKINGS, EXTS, LEGAL_PERSON_ID, LEGAL_PERSON_PHONE, LEGAL_PERSON_PHOTO_URL, 
+    ATTENDING_PERSONNEL
+  </sql>
+  <sql id="Blob_Column_List" >
+    INTRODUCE_COMPANY
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.mugua.core.userInfo.pojo.UserInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from user_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mugua.core.userInfo.pojo.UserInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from user_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from user_info
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from user_info
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mugua.core.userInfo.pojo.UserInfoExample" >
+    delete from user_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mugua.core.userInfo.pojo.UserInfo" >
+    insert into user_info (ID, USER_NAME, USER_GENDER, 
+      USER_AGE, USER_PHONE, COMPANY, 
+      USER_PASSWORD, PHOTO_URL, IS_CENTIFICATION, 
+      DEPARTMENT, QQ, WECHAT, 
+      PRODUCT_URL_ONE, MICROBLOG, PRODUCT_URL_TWO, 
+      COMPANY_VIDIO, EXT, BUSINESS_LICENSE_PHOTO_URL, 
+      LEGAL_PERSON_NAME, ORGANIZATION_CODE, REGISTERED_ASSETS, 
+      CREATE_TIME, CREATE_USER_TIME, COMPANY_TYPE, 
+      COMPANY_ADDR, TIME_LIMIT, SCOPE_OF_BUSINESS, 
+      BOOKINGS, EXTS, LEGAL_PERSON_ID, 
+      LEGAL_PERSON_PHONE, LEGAL_PERSON_PHOTO_URL, 
+      ATTENDING_PERSONNEL, INTRODUCE_COMPANY
+      )
+    values (#{id,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{userGender,jdbcType=TINYINT}, 
+      #{userAge,jdbcType=INTEGER}, #{userPhone,jdbcType=VARCHAR}, #{company,jdbcType=VARCHAR}, 
+      #{userPassword,jdbcType=VARCHAR}, #{photoUrl,jdbcType=VARCHAR}, #{isCentification,jdbcType=TINYINT}, 
+      #{department,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, #{wechat,jdbcType=VARCHAR}, 
+      #{productUrlOne,jdbcType=VARCHAR}, #{microblog,jdbcType=VARCHAR}, #{productUrlTwo,jdbcType=VARCHAR}, 
+      #{companyVidio,jdbcType=VARCHAR}, #{ext,jdbcType=VARCHAR}, #{businessLicensePhotoUrl,jdbcType=VARCHAR}, 
+      #{legalPersonName,jdbcType=VARCHAR}, #{organizationCode,jdbcType=VARCHAR}, #{registeredAssets,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createUserTime,jdbcType=TIMESTAMP}, #{companyType,jdbcType=VARCHAR}, 
+      #{companyAddr,jdbcType=VARCHAR}, #{timeLimit,jdbcType=TIMESTAMP}, #{scopeOfBusiness,jdbcType=VARCHAR}, 
+      #{bookings,jdbcType=VARCHAR}, #{exts,jdbcType=VARCHAR}, #{legalPersonId,jdbcType=VARCHAR}, 
+      #{legalPersonPhone,jdbcType=VARCHAR}, #{legalPersonPhotoUrl,jdbcType=VARCHAR}, 
+      #{attendingPersonnel,jdbcType=VARCHAR}, #{introduceCompany,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mugua.core.userInfo.pojo.UserInfo" >
+    insert into user_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="userName != null" >
+        USER_NAME,
+      </if>
+      <if test="userGender != null" >
+        USER_GENDER,
+      </if>
+      <if test="userAge != null" >
+        USER_AGE,
+      </if>
+      <if test="userPhone != null" >
+        USER_PHONE,
+      </if>
+      <if test="company != null" >
+        COMPANY,
+      </if>
+      <if test="userPassword != null" >
+        USER_PASSWORD,
+      </if>
+      <if test="photoUrl != null" >
+        PHOTO_URL,
+      </if>
+      <if test="isCentification != null" >
+        IS_CENTIFICATION,
+      </if>
+      <if test="department != null" >
+        DEPARTMENT,
+      </if>
+      <if test="qq != null" >
+        QQ,
+      </if>
+      <if test="wechat != null" >
+        WECHAT,
+      </if>
+      <if test="productUrlOne != null" >
+        PRODUCT_URL_ONE,
+      </if>
+      <if test="microblog != null" >
+        MICROBLOG,
+      </if>
+      <if test="productUrlTwo != null" >
+        PRODUCT_URL_TWO,
+      </if>
+      <if test="companyVidio != null" >
+        COMPANY_VIDIO,
+      </if>
+      <if test="ext != null" >
+        EXT,
+      </if>
+      <if test="businessLicensePhotoUrl != null" >
+        BUSINESS_LICENSE_PHOTO_URL,
+      </if>
+      <if test="legalPersonName != null" >
+        LEGAL_PERSON_NAME,
+      </if>
+      <if test="organizationCode != null" >
+        ORGANIZATION_CODE,
+      </if>
+      <if test="registeredAssets != null" >
+        REGISTERED_ASSETS,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="createUserTime != null" >
+        CREATE_USER_TIME,
+      </if>
+      <if test="companyType != null" >
+        COMPANY_TYPE,
+      </if>
+      <if test="companyAddr != null" >
+        COMPANY_ADDR,
+      </if>
+      <if test="timeLimit != null" >
+        TIME_LIMIT,
+      </if>
+      <if test="scopeOfBusiness != null" >
+        SCOPE_OF_BUSINESS,
+      </if>
+      <if test="bookings != null" >
+        BOOKINGS,
+      </if>
+      <if test="exts != null" >
+        EXTS,
+      </if>
+      <if test="legalPersonId != null" >
+        LEGAL_PERSON_ID,
+      </if>
+      <if test="legalPersonPhone != null" >
+        LEGAL_PERSON_PHONE,
+      </if>
+      <if test="legalPersonPhotoUrl != null" >
+        LEGAL_PERSON_PHOTO_URL,
+      </if>
+      <if test="attendingPersonnel != null" >
+        ATTENDING_PERSONNEL,
+      </if>
+      <if test="introduceCompany != null" >
+        INTRODUCE_COMPANY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userGender != null" >
+        #{userGender,jdbcType=TINYINT},
+      </if>
+      <if test="userAge != null" >
+        #{userAge,jdbcType=INTEGER},
+      </if>
+      <if test="userPhone != null" >
+        #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null" >
+        #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null" >
+        #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="photoUrl != null" >
+        #{photoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="isCentification != null" >
+        #{isCentification,jdbcType=TINYINT},
+      </if>
+      <if test="department != null" >
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null" >
+        #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="wechat != null" >
+        #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="productUrlOne != null" >
+        #{productUrlOne,jdbcType=VARCHAR},
+      </if>
+      <if test="microblog != null" >
+        #{microblog,jdbcType=VARCHAR},
+      </if>
+      <if test="productUrlTwo != null" >
+        #{productUrlTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="companyVidio != null" >
+        #{companyVidio,jdbcType=VARCHAR},
+      </if>
+      <if test="ext != null" >
+        #{ext,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicensePhotoUrl != null" >
+        #{businessLicensePhotoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPersonName != null" >
+        #{legalPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationCode != null" >
+        #{organizationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="registeredAssets != null" >
+        #{registeredAssets,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserTime != null" >
+        #{createUserTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="companyType != null" >
+        #{companyType,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddr != null" >
+        #{companyAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="timeLimit != null" >
+        #{timeLimit,jdbcType=TIMESTAMP},
+      </if>
+      <if test="scopeOfBusiness != null" >
+        #{scopeOfBusiness,jdbcType=VARCHAR},
+      </if>
+      <if test="bookings != null" >
+        #{bookings,jdbcType=VARCHAR},
+      </if>
+      <if test="exts != null" >
+        #{exts,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPersonId != null" >
+        #{legalPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPersonPhone != null" >
+        #{legalPersonPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPersonPhotoUrl != null" >
+        #{legalPersonPhotoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="attendingPersonnel != null" >
+        #{attendingPersonnel,jdbcType=VARCHAR},
+      </if>
+      <if test="introduceCompany != null" >
+        #{introduceCompany,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mugua.core.userInfo.pojo.UserInfoExample" resultType="java.lang.Integer" >
+    select count(*) from user_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update user_info
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userName != null" >
+        USER_NAME = #{record.userName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userGender != null" >
+        USER_GENDER = #{record.userGender,jdbcType=TINYINT},
+      </if>
+      <if test="record.userAge != null" >
+        USER_AGE = #{record.userAge,jdbcType=INTEGER},
+      </if>
+      <if test="record.userPhone != null" >
+        USER_PHONE = #{record.userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.company != null" >
+        COMPANY = #{record.company,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userPassword != null" >
+        USER_PASSWORD = #{record.userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.photoUrl != null" >
+        PHOTO_URL = #{record.photoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isCentification != null" >
+        IS_CENTIFICATION = #{record.isCentification,jdbcType=TINYINT},
+      </if>
+      <if test="record.department != null" >
+        DEPARTMENT = #{record.department,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qq != null" >
+        QQ = #{record.qq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wechat != null" >
+        WECHAT = #{record.wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productUrlOne != null" >
+        PRODUCT_URL_ONE = #{record.productUrlOne,jdbcType=VARCHAR},
+      </if>
+      <if test="record.microblog != null" >
+        MICROBLOG = #{record.microblog,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productUrlTwo != null" >
+        PRODUCT_URL_TWO = #{record.productUrlTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyVidio != null" >
+        COMPANY_VIDIO = #{record.companyVidio,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ext != null" >
+        EXT = #{record.ext,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessLicensePhotoUrl != null" >
+        BUSINESS_LICENSE_PHOTO_URL = #{record.businessLicensePhotoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.legalPersonName != null" >
+        LEGAL_PERSON_NAME = #{record.legalPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.organizationCode != null" >
+        ORGANIZATION_CODE = #{record.organizationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.registeredAssets != null" >
+        REGISTERED_ASSETS = #{record.registeredAssets,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createUserTime != null" >
+        CREATE_USER_TIME = #{record.createUserTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.companyType != null" >
+        COMPANY_TYPE = #{record.companyType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyAddr != null" >
+        COMPANY_ADDR = #{record.companyAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.timeLimit != null" >
+        TIME_LIMIT = #{record.timeLimit,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.scopeOfBusiness != null" >
+        SCOPE_OF_BUSINESS = #{record.scopeOfBusiness,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bookings != null" >
+        BOOKINGS = #{record.bookings,jdbcType=VARCHAR},
+      </if>
+      <if test="record.exts != null" >
+        EXTS = #{record.exts,jdbcType=VARCHAR},
+      </if>
+      <if test="record.legalPersonId != null" >
+        LEGAL_PERSON_ID = #{record.legalPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.legalPersonPhone != null" >
+        LEGAL_PERSON_PHONE = #{record.legalPersonPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.legalPersonPhotoUrl != null" >
+        LEGAL_PERSON_PHOTO_URL = #{record.legalPersonPhotoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attendingPersonnel != null" >
+        ATTENDING_PERSONNEL = #{record.attendingPersonnel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.introduceCompany != null" >
+        INTRODUCE_COMPANY = #{record.introduceCompany,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update user_info
+    set ID = #{record.id,jdbcType=VARCHAR},
+      USER_NAME = #{record.userName,jdbcType=VARCHAR},
+      USER_GENDER = #{record.userGender,jdbcType=TINYINT},
+      USER_AGE = #{record.userAge,jdbcType=INTEGER},
+      USER_PHONE = #{record.userPhone,jdbcType=VARCHAR},
+      COMPANY = #{record.company,jdbcType=VARCHAR},
+      USER_PASSWORD = #{record.userPassword,jdbcType=VARCHAR},
+      PHOTO_URL = #{record.photoUrl,jdbcType=VARCHAR},
+      IS_CENTIFICATION = #{record.isCentification,jdbcType=TINYINT},
+      DEPARTMENT = #{record.department,jdbcType=VARCHAR},
+      QQ = #{record.qq,jdbcType=VARCHAR},
+      WECHAT = #{record.wechat,jdbcType=VARCHAR},
+      PRODUCT_URL_ONE = #{record.productUrlOne,jdbcType=VARCHAR},
+      MICROBLOG = #{record.microblog,jdbcType=VARCHAR},
+      PRODUCT_URL_TWO = #{record.productUrlTwo,jdbcType=VARCHAR},
+      COMPANY_VIDIO = #{record.companyVidio,jdbcType=VARCHAR},
+      EXT = #{record.ext,jdbcType=VARCHAR},
+      BUSINESS_LICENSE_PHOTO_URL = #{record.businessLicensePhotoUrl,jdbcType=VARCHAR},
+      LEGAL_PERSON_NAME = #{record.legalPersonName,jdbcType=VARCHAR},
+      ORGANIZATION_CODE = #{record.organizationCode,jdbcType=VARCHAR},
+      REGISTERED_ASSETS = #{record.registeredAssets,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      CREATE_USER_TIME = #{record.createUserTime,jdbcType=TIMESTAMP},
+      COMPANY_TYPE = #{record.companyType,jdbcType=VARCHAR},
+      COMPANY_ADDR = #{record.companyAddr,jdbcType=VARCHAR},
+      TIME_LIMIT = #{record.timeLimit,jdbcType=TIMESTAMP},
+      SCOPE_OF_BUSINESS = #{record.scopeOfBusiness,jdbcType=VARCHAR},
+      BOOKINGS = #{record.bookings,jdbcType=VARCHAR},
+      EXTS = #{record.exts,jdbcType=VARCHAR},
+      LEGAL_PERSON_ID = #{record.legalPersonId,jdbcType=VARCHAR},
+      LEGAL_PERSON_PHONE = #{record.legalPersonPhone,jdbcType=VARCHAR},
+      LEGAL_PERSON_PHOTO_URL = #{record.legalPersonPhotoUrl,jdbcType=VARCHAR},
+      ATTENDING_PERSONNEL = #{record.attendingPersonnel,jdbcType=VARCHAR},
+      INTRODUCE_COMPANY = #{record.introduceCompany,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update user_info
+    set ID = #{record.id,jdbcType=VARCHAR},
+      USER_NAME = #{record.userName,jdbcType=VARCHAR},
+      USER_GENDER = #{record.userGender,jdbcType=TINYINT},
+      USER_AGE = #{record.userAge,jdbcType=INTEGER},
+      USER_PHONE = #{record.userPhone,jdbcType=VARCHAR},
+      COMPANY = #{record.company,jdbcType=VARCHAR},
+      USER_PASSWORD = #{record.userPassword,jdbcType=VARCHAR},
+      PHOTO_URL = #{record.photoUrl,jdbcType=VARCHAR},
+      IS_CENTIFICATION = #{record.isCentification,jdbcType=TINYINT},
+      DEPARTMENT = #{record.department,jdbcType=VARCHAR},
+      QQ = #{record.qq,jdbcType=VARCHAR},
+      WECHAT = #{record.wechat,jdbcType=VARCHAR},
+      PRODUCT_URL_ONE = #{record.productUrlOne,jdbcType=VARCHAR},
+      MICROBLOG = #{record.microblog,jdbcType=VARCHAR},
+      PRODUCT_URL_TWO = #{record.productUrlTwo,jdbcType=VARCHAR},
+      COMPANY_VIDIO = #{record.companyVidio,jdbcType=VARCHAR},
+      EXT = #{record.ext,jdbcType=VARCHAR},
+      BUSINESS_LICENSE_PHOTO_URL = #{record.businessLicensePhotoUrl,jdbcType=VARCHAR},
+      LEGAL_PERSON_NAME = #{record.legalPersonName,jdbcType=VARCHAR},
+      ORGANIZATION_CODE = #{record.organizationCode,jdbcType=VARCHAR},
+      REGISTERED_ASSETS = #{record.registeredAssets,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      CREATE_USER_TIME = #{record.createUserTime,jdbcType=TIMESTAMP},
+      COMPANY_TYPE = #{record.companyType,jdbcType=VARCHAR},
+      COMPANY_ADDR = #{record.companyAddr,jdbcType=VARCHAR},
+      TIME_LIMIT = #{record.timeLimit,jdbcType=TIMESTAMP},
+      SCOPE_OF_BUSINESS = #{record.scopeOfBusiness,jdbcType=VARCHAR},
+      BOOKINGS = #{record.bookings,jdbcType=VARCHAR},
+      EXTS = #{record.exts,jdbcType=VARCHAR},
+      LEGAL_PERSON_ID = #{record.legalPersonId,jdbcType=VARCHAR},
+      LEGAL_PERSON_PHONE = #{record.legalPersonPhone,jdbcType=VARCHAR},
+      LEGAL_PERSON_PHOTO_URL = #{record.legalPersonPhotoUrl,jdbcType=VARCHAR},
+      ATTENDING_PERSONNEL = #{record.attendingPersonnel,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mugua.core.userInfo.pojo.UserInfo" >
+    update user_info
+    <set >
+      <if test="userName != null" >
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userGender != null" >
+        USER_GENDER = #{userGender,jdbcType=TINYINT},
+      </if>
+      <if test="userAge != null" >
+        USER_AGE = #{userAge,jdbcType=INTEGER},
+      </if>
+      <if test="userPhone != null" >
+        USER_PHONE = #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null" >
+        COMPANY = #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null" >
+        USER_PASSWORD = #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="photoUrl != null" >
+        PHOTO_URL = #{photoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="isCentification != null" >
+        IS_CENTIFICATION = #{isCentification,jdbcType=TINYINT},
+      </if>
+      <if test="department != null" >
+        DEPARTMENT = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null" >
+        QQ = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="wechat != null" >
+        WECHAT = #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="productUrlOne != null" >
+        PRODUCT_URL_ONE = #{productUrlOne,jdbcType=VARCHAR},
+      </if>
+      <if test="microblog != null" >
+        MICROBLOG = #{microblog,jdbcType=VARCHAR},
+      </if>
+      <if test="productUrlTwo != null" >
+        PRODUCT_URL_TWO = #{productUrlTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="companyVidio != null" >
+        COMPANY_VIDIO = #{companyVidio,jdbcType=VARCHAR},
+      </if>
+      <if test="ext != null" >
+        EXT = #{ext,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicensePhotoUrl != null" >
+        BUSINESS_LICENSE_PHOTO_URL = #{businessLicensePhotoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPersonName != null" >
+        LEGAL_PERSON_NAME = #{legalPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationCode != null" >
+        ORGANIZATION_CODE = #{organizationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="registeredAssets != null" >
+        REGISTERED_ASSETS = #{registeredAssets,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserTime != null" >
+        CREATE_USER_TIME = #{createUserTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="companyType != null" >
+        COMPANY_TYPE = #{companyType,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddr != null" >
+        COMPANY_ADDR = #{companyAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="timeLimit != null" >
+        TIME_LIMIT = #{timeLimit,jdbcType=TIMESTAMP},
+      </if>
+      <if test="scopeOfBusiness != null" >
+        SCOPE_OF_BUSINESS = #{scopeOfBusiness,jdbcType=VARCHAR},
+      </if>
+      <if test="bookings != null" >
+        BOOKINGS = #{bookings,jdbcType=VARCHAR},
+      </if>
+      <if test="exts != null" >
+        EXTS = #{exts,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPersonId != null" >
+        LEGAL_PERSON_ID = #{legalPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPersonPhone != null" >
+        LEGAL_PERSON_PHONE = #{legalPersonPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPersonPhotoUrl != null" >
+        LEGAL_PERSON_PHOTO_URL = #{legalPersonPhotoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="attendingPersonnel != null" >
+        ATTENDING_PERSONNEL = #{attendingPersonnel,jdbcType=VARCHAR},
+      </if>
+      <if test="introduceCompany != null" >
+        INTRODUCE_COMPANY = #{introduceCompany,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.mugua.core.userInfo.pojo.UserInfo" >
+    update user_info
+    set USER_NAME = #{userName,jdbcType=VARCHAR},
+      USER_GENDER = #{userGender,jdbcType=TINYINT},
+      USER_AGE = #{userAge,jdbcType=INTEGER},
+      USER_PHONE = #{userPhone,jdbcType=VARCHAR},
+      COMPANY = #{company,jdbcType=VARCHAR},
+      USER_PASSWORD = #{userPassword,jdbcType=VARCHAR},
+      PHOTO_URL = #{photoUrl,jdbcType=VARCHAR},
+      IS_CENTIFICATION = #{isCentification,jdbcType=TINYINT},
+      DEPARTMENT = #{department,jdbcType=VARCHAR},
+      QQ = #{qq,jdbcType=VARCHAR},
+      WECHAT = #{wechat,jdbcType=VARCHAR},
+      PRODUCT_URL_ONE = #{productUrlOne,jdbcType=VARCHAR},
+      MICROBLOG = #{microblog,jdbcType=VARCHAR},
+      PRODUCT_URL_TWO = #{productUrlTwo,jdbcType=VARCHAR},
+      COMPANY_VIDIO = #{companyVidio,jdbcType=VARCHAR},
+      EXT = #{ext,jdbcType=VARCHAR},
+      BUSINESS_LICENSE_PHOTO_URL = #{businessLicensePhotoUrl,jdbcType=VARCHAR},
+      LEGAL_PERSON_NAME = #{legalPersonName,jdbcType=VARCHAR},
+      ORGANIZATION_CODE = #{organizationCode,jdbcType=VARCHAR},
+      REGISTERED_ASSETS = #{registeredAssets,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      CREATE_USER_TIME = #{createUserTime,jdbcType=TIMESTAMP},
+      COMPANY_TYPE = #{companyType,jdbcType=VARCHAR},
+      COMPANY_ADDR = #{companyAddr,jdbcType=VARCHAR},
+      TIME_LIMIT = #{timeLimit,jdbcType=TIMESTAMP},
+      SCOPE_OF_BUSINESS = #{scopeOfBusiness,jdbcType=VARCHAR},
+      BOOKINGS = #{bookings,jdbcType=VARCHAR},
+      EXTS = #{exts,jdbcType=VARCHAR},
+      LEGAL_PERSON_ID = #{legalPersonId,jdbcType=VARCHAR},
+      LEGAL_PERSON_PHONE = #{legalPersonPhone,jdbcType=VARCHAR},
+      LEGAL_PERSON_PHOTO_URL = #{legalPersonPhotoUrl,jdbcType=VARCHAR},
+      ATTENDING_PERSONNEL = #{attendingPersonnel,jdbcType=VARCHAR},
+      INTRODUCE_COMPANY = #{introduceCompany,jdbcType=LONGVARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mugua.core.userInfo.pojo.UserInfo" >
+    update user_info
+    set USER_NAME = #{userName,jdbcType=VARCHAR},
+      USER_GENDER = #{userGender,jdbcType=TINYINT},
+      USER_AGE = #{userAge,jdbcType=INTEGER},
+      USER_PHONE = #{userPhone,jdbcType=VARCHAR},
+      COMPANY = #{company,jdbcType=VARCHAR},
+      USER_PASSWORD = #{userPassword,jdbcType=VARCHAR},
+      PHOTO_URL = #{photoUrl,jdbcType=VARCHAR},
+      IS_CENTIFICATION = #{isCentification,jdbcType=TINYINT},
+      DEPARTMENT = #{department,jdbcType=VARCHAR},
+      QQ = #{qq,jdbcType=VARCHAR},
+      WECHAT = #{wechat,jdbcType=VARCHAR},
+      PRODUCT_URL_ONE = #{productUrlOne,jdbcType=VARCHAR},
+      MICROBLOG = #{microblog,jdbcType=VARCHAR},
+      PRODUCT_URL_TWO = #{productUrlTwo,jdbcType=VARCHAR},
+      COMPANY_VIDIO = #{companyVidio,jdbcType=VARCHAR},
+      EXT = #{ext,jdbcType=VARCHAR},
+      BUSINESS_LICENSE_PHOTO_URL = #{businessLicensePhotoUrl,jdbcType=VARCHAR},
+      LEGAL_PERSON_NAME = #{legalPersonName,jdbcType=VARCHAR},
+      ORGANIZATION_CODE = #{organizationCode,jdbcType=VARCHAR},
+      REGISTERED_ASSETS = #{registeredAssets,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      CREATE_USER_TIME = #{createUserTime,jdbcType=TIMESTAMP},
+      COMPANY_TYPE = #{companyType,jdbcType=VARCHAR},
+      COMPANY_ADDR = #{companyAddr,jdbcType=VARCHAR},
+      TIME_LIMIT = #{timeLimit,jdbcType=TIMESTAMP},
+      SCOPE_OF_BUSINESS = #{scopeOfBusiness,jdbcType=VARCHAR},
+      BOOKINGS = #{bookings,jdbcType=VARCHAR},
+      EXTS = #{exts,jdbcType=VARCHAR},
+      LEGAL_PERSON_ID = #{legalPersonId,jdbcType=VARCHAR},
+      LEGAL_PERSON_PHONE = #{legalPersonPhone,jdbcType=VARCHAR},
+      LEGAL_PERSON_PHOTO_URL = #{legalPersonPhotoUrl,jdbcType=VARCHAR},
+      ATTENDING_PERSONNEL = #{attendingPersonnel,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

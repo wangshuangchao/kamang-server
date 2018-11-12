@@ -1,0 +1,10 @@
+i{display: inline-block;}
+body{overflow-x: hidden;padding:0.4rem 0.24rem;}
+h1{font-size: 0.37rem;margin-bottom: 0.4rem;}
+.iconDiv{margin-bottom:0.6rem;font-size: 0.32rem;line-height: 0.32rem;}
+.iconDiv i{width: 0.42rem;height: 0.42rem;background-image: url("/images/topico.png");background-size: cover;margin-right: 0.16rem;vertical-align: middle;}
+.iconName{color:#ff962c;margin-right:0.4rem;}
+.newsContent{font-size: 0.26rem;color: #666666;}
+.newsContent p{line-height: 0.67rem;margin:0;padding:0;text-indent: 0.6rem;font-size: 0.35rem;}
+.imgDiv{width:100%;margin:0.4rem 0;}
+.imgDiv img{width:100%; height:100%;}

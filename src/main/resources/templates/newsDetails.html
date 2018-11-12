@@ -1,0 +1,73 @@
+<!Doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="format-detection" content="telephone=no">
+    <title></title>
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/newsDetails.css">
+    <script src="/js/jquery.min.js"></script>
+    <script>
+        (function (doc, win) {
+            var docEl = doc.documentElement,
+                resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                recalc = function () {
+                    var clientWidth = docEl.clientWidth;
+                    if (!clientWidth) return;
+                    if(clientWidth>=750){
+                        docEl.style.fontSize = '100px';
+                    }else{
+                        docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
+                    }
+                };
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);
+        })(document, window);
+    </script>
+</head>
+<body>
+    <!--标题-->
+    <h1 th:text="${sayOneInfo.titleOne}" th:if="${not #lists.isEmpty(sayOneInfo.contTextThr)}"></h1>
+    <div class="iconDiv">
+        <i></i><span class="iconName">咔芒</span><span th:text="${sayOneInfo.extOne}">11-24</span>
+    </div>
+    <div class="newsContent">
+        <!--文字一-->
+        <p th:text="${sayOneInfo.contTextOne}"  th:if="${not #lists.isEmpty(sayOneInfo.contTextOne)}"></p>
+        <div class="imgDiv">
+            <img th:src="@{${sayOneInfo.contPhotoOneUrl}}" th:if="${not #lists.isEmpty(sayOneInfo.contTextOne)}" alt="">
+        </div>
+        <!--文字二-->
+        <p th:text="${sayOneInfo.contTextTwo}" th:if="${not #lists.isEmpty(sayOneInfo.contTextTwo)}"></p>
+        <div class="imgDiv">
+            <img th:src="@{${sayOneInfo.contPhotoTwoUrl}}" th:if="${not #lists.isEmpty(sayOneInfo.contPhotoTwoUrl)}" alt="">
+        </div>
+        <!--文字三-->
+        <p th:text="${sayOneInfo.contTextThr}" th:if="${not #lists.isEmpty(sayOneInfo.contTextThr)}"></p>
+        <div class="imgDiv">
+            <img th:src="@{${sayOneInfo.contPhotoThrUrl}}" th:if="${not #lists.isEmpty(sayOneInfo.contPhotoThrUrl)}" alt="">
+        </div>
+        <!--文字四-->
+        <p th:text="${sayOneInfo.contTextFor}" th:if="${not #lists.isEmpty(sayOneInfo.contTextFor)}"></p>
+        <div class="imgDiv">
+            <img th:src="@{${sayOneInfo.contPhotoForUrl}}" th:if="${not #lists.isEmpty(sayOneInfo.contPhotoForUrl)}" alt="">
+        </div>
+    </div>
+    <script> 
+    $(".newsContent p").each(function(){
+    	if($(this).html() =='' || $(this).html()=="null"){
+    		$(this).hide();
+    	}
+    })
+        $(".imgDiv").each(function(){
+            if($(this).find("img").attr("src") == "" || $(this).find("img").attr("src") == "null" || $(this).find("img").attr("src") == "0"){
+                    $(this).hide();
+            }
+        });
+       
+    </script>
+</body>
+</html>   

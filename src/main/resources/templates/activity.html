@@ -1,0 +1,82 @@
+<!Doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="format-detection" content="telephone=no">
+    <title></title>
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/newActivity.css">
+    <script src="/js/jquery.min.js"></script>
+    <script>
+        (function (doc, win) {
+            var docEl = doc.documentElement,
+                resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                recalc = function () {
+                    var clientWidth = docEl.clientWidth;
+                    if (!clientWidth) return;
+                    if(clientWidth>=750){
+                        docEl.style.fontSize = '100px';
+                    }else{
+                        docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
+                    }
+                };
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);
+        })(document, window);
+    </script>
+</head>
+<body>
+    <div class="topDiv">
+        <span></span>
+        <div>有没有这样的经历</div>
+        <p class="topDivP1">看见自己的名片被人随手丢弃， 滚落在马路上的尴尬。</p>
+        <p class="topDivP2">&nbsp&nbsp&nbsp&nbsp当客户想留自己一张名片时， 想不起自己名片放到哪了的焦虑。</p>
+        <p class="topDivP3">当自己家的产品优势还没有介绍完毕， 客户有事想离开的急迫。</p>
+    </div>
+    <div class="sunlight"></div>
+    <div class="wrongDiv">
+        <div>我该怎么办</div>
+        <p class="wrongDivP">突然有一天发现，我们公司火啦！</p>
+        <p>原来我有一张企业电子名片,</p>
+        <p>我发给了客户，</p>
+        <p>客户发给客户的客户，</p>
+        <p>竟然裂变出来一个粉丝团。</p>
+        <p>产品好，宣传好，企业才会更好！</p>
+    </div>
+    <div class="guideDiv">
+        <p>现在，下载咔芒APP</p>
+        <p>只需30秒就会拥有自己的一张电子名片，</p>
+        <p class="lastP">并免费赠送环保纸质名片。</p>
+    </div>
+    <div class="flowDiv">
+        <h4><span class="span1"></span>【活动流程】<span class="span2"></span></h4>
+        <p class="p1"><span>1.</span>  点击活动“立即参与”完成企业认证， 生成电子名片。</p>
+        <p class="p2"><span>2.</span>  关注微信公众号：【 咔芒 】   回复"1"，领取活动奖品。</p>
+        <h4 class="h4_2"><span class="span1"></span>【活动奖励】<span class="span2"></span></h4>
+        <p class="p3"><span>1.</span>  一盒环保纸质名片，<span class="span3">包邮</span></p>
+        <p class="p4"><span>2.</span>  永久免费使用电子名片 </p>
+    </div>
+    <div class="imgDiv"></div>
+    <div class="timeDiv">
+        <h4><span class="span1"></span>【活动时间】<span class="span2"></span></h4>
+        <p>2018年4月09日00:00-5月09日00:00截止</p>
+    </div>
+    <div class="downloadDiv">
+        <ul>
+            <li>
+                <img src="/images/appLoad.png" alt="">
+            </li>
+            <li>
+                <img src="/images/wxgzh.png" alt="">
+            </li>
+        </ul>
+    </div>
+    <div class="footerDiv">
+        <p>以上奖品均由河北木瓜网络科技有限公司提供</p>
+        <p>通过本软件参加的任何商业活动或者金币相关活动，均与Apple Inc.无关</p>
+    </div>
+</body>
+</html>

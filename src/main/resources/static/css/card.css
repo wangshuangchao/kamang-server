@@ -1,0 +1,37 @@
+body, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td{margin: 0; padding: 0;}
+body{background: #f4f4f4; font-size: 0.25rem;}
+table{border-collapse: collapse; border-spacing: 0;}
+fieldset, img{border: 0 none;}
+address, caption, cite, code, dfn, em, strong, th, var{font-style: normal; font-weight: normal;}
+strong{font-weight: 800;}
+ol, ul, li{list-style: none outside none;}
+caption, th{text-align: left;}
+h1, h2, h3, h4, h5, h6{font-size: 100%; font-weight: normal;}
+i{display: inline-block}
+.headerTop{width: 100%; height: 3.6rem; box-sizing: border-box;position: relative;}
+.headerTop img{width:100%;height:100%;}
+.videoStop{width:100%;height:100%;position:absolute;top:0;left:0;z-index: 2;text-align: center;  }
+.videoStop i{width:1rem;height:1rem;background-image: url("/images/stop.png");background-size: 100% 100%;position:absolute;top: 40%;left: 45%;}
+.imgMassige{width: 100%; height: 2.8rem; background-color: #ffffff; margin-top: 20px; margin-bottom: 20px;}
+.imgMassige ul{/* display: flex; *//* justify-content: space-around; */}
+.imgMassige ul li{width: 32%;height: 2.3rem;border-radius: 10px;margin-top: 0.26rem;float: left;margin-left: 0.3rem;}
+.imgMassige ul li img{width: 100%; height: 100%; border-radius: 10px;}
+.businessMassige{width: 100%;background-color: #ffffff;font-size: 0.28rem;padding-left: 0.24rem;padding-top: 0.2rem;padding-bottom: 0.2rem;margin-bottom: 20px;box-sizing: border-box;}
+.businessMassige .title{margin-bottom: 0.3rem;}
+.title i{width: 0.36rem; height: 0.4rem; background-size: 100% 100%; background-image: url("/images/massige.png"); vertical-align: middle; margin-right: 0.16rem;}
+.businessMassige dd{line-height: 0.55rem;font-size: 0.28rem;}
+.spanText{width: 2.95rem;display: inline-block;color: #999999;float: left;}
+.companyMassige{width: 100%;background-color: #ffffff;padding: 0.24rem 0.3rem 0 0.24rem;box-sizing: border-box;margin-bottom: 0.98rem;font-size:0.28rem;}
+.company i{width: 0.36rem; height: 0.4rem; background-size: 100% 100%; background-image: url("/images/brief.png"); vertical-align: middle; margin-right: 0.16rem;}
+.briefIntroduction em{margin: 0.4rem auto;width: 100%;display: inline-block;text-align: center;font-size: 0.3rem;}
+.briefIntroduction p{text-indent: 19px;line-height: 0.6rem;letter-spacing: 1px;font-size: 0.28rem;padding: 0 0.1rem;color: #999999;}
+.footer{width: 100%; height: 0.98rem; background-color: #ff962c; text-align: center; line-height: 0.98rem; color: #ffffff; font-size: 0.31rem; position: fixed; bottom:0; left:0;}
+.ddSpan{width: 4.7rem; line-height: 20px; display: inline-block; margin-top: 4px;}
+.contentDiv{overflow-x: hidden;}
+.spanAddress{float:left;width:3.9rem;}
+video{width: 100%; height: 3.6rem;}
+.qrCode{width: 100%;height: 7.5rem;position: fixed;bottom: 0px;z-index: 3;display: none;background-color:#ffffff}
+.qrCode p{text-align: center;margin-top: 0.7rem;font-size: 0.25rem;}
+.qrCodeDiv{width: 3rem;height: 3rem;margin: 0.8rem auto 0;}
+.qrCodeDiv img{width:100%;height:100%;}
+.qrCode .offDivI{width:6.2rem;height:0.8rem;background-color:#ffc140;border-radius: 35px;font-size:0.3rem;font-weight: 600;margin-left: auto;margin-right: auto;color: #ffffff;letter-spacing: 2px;line-height: 0.8rem;}

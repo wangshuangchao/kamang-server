@@ -1,0 +1,63 @@
+[
+  {
+    "productId": "123456",
+    "productType": "生活用品",
+    "productSize": "床单S\\L\\XL",
+    "productStock": 899,
+    "crateTime": "2017-10-01 00:00:00",
+    "exp": "2017-10-01 00:00:00",
+    "deadline": "2018-10-01 00:00:00",
+    "productPrice": 100.0,
+    "productTitle": "床单四件套",
+    "productDescription": "纯棉、亲近肌肤",
+    "address": "杭州",
+    "productPhotoUrl": "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1511785371091&di=95b1b14cbe0994dcb928038b2998339e&imgtype=0&src=http%3A%2F%2Fwww.6",
+    "productVideoUrl": "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1511785371090&di=63eccd6469165aa058c84e1062648f68&imgtype=0&src=http%3A%2F%2Fimage",
+    "ext": "",
+    "affiliatedCompany": "",
+    "state": null,
+    "productName": ""
+  },
+  {
+    "productId": "1673923",
+    "productType": "电子设备",
+    "productSize": "64g/固态硬盘",
+    "productStock": 5688,
+    "crateTime": "2017-10-01 00:00:00",
+    "exp": "2020-10-01 00:00:00",
+    "deadline": "2020-10-01 00:00:00",
+    "productPrice": 5899.0,
+    "productTitle": "电子书阅览",
+    "productDescription": "电子设备",
+    "address": "北京",
+    "productPhotoUrl": "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1511785695909&di=77a1965e4c4852a85c2124805bd90e21&imgtype=0&src=http%3A%2F%2Fimg003.21cnimg.com%2Fphotos%2Falbum%2F20130205%2Fm600%2FCC0D0B6C08633BACE478BE285238236D.jpeg",
+    "productVideoUrl": "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1511785695909&di=75816c9dac7fbbe0f6c62d19343100a2&imgtype=0&src=http%3A%2F%2Fpic15.nipic.com%2F20110729%2F8052939_230938916000_2.jpg",
+    "ext": "",
+    "affiliatedCompany": "",
+    "state": null,
+    "productName": ""
+  }
+]
+
+[
+  {
+    "dynamicId": "asc",
+    "dynamicTitle": "产品动态",//标题
+    "dynamicContent": "恭喜陈二臭公司“脉动”1000箱成功被解救",//内容
+    "titleType": "典型案例",//类型
+    "productId": "123456",//产品id
+    "cardId": "ite",//名片id
+    "extOne": "",
+    "extTwo": ""
+  },
+  {
+    "dynamicId": "asd",
+    "dynamicTitle": "企业入驻",
+    "dynamicContent": "欢迎木瓜公司成功入驻",
+    "titleType": "风险提示",
+    "productId": "123456",
+    "cardId": "ert",
+    "extOne": "",
+    "extTwo": ""
+  }
+]

@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mugua.core.pay.mgorder.mapper.MgOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.mugua.core.pay.mgorder.pojo.MgOrder" >
+    <id column="ORDER_ID" property="orderId" jdbcType="BIGINT" />
+    <result column="PAYMENT" property="payment" jdbcType="DECIMAL" />
+    <result column="PAYMENT_TYPE" property="paymentType" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="PAYMENT_TIME" property="paymentTime" jdbcType="TIMESTAMP" />
+    <result column="CONSIGN_TIME" property="consignTime" jdbcType="TIMESTAMP" />
+    <result column="END_TIME" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="CLOSE_TIME" property="closeTime" jdbcType="TIMESTAMP" />
+    <result column="SHIPPING_NAME" property="shippingName" jdbcType="VARCHAR" />
+    <result column="SHIPPING_CODE" property="shippingCode" jdbcType="VARCHAR" />
+    <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+    <result column="BUYER_MESSAGE" property="buyerMessage" jdbcType="VARCHAR" />
+    <result column="BUYER_NICK" property="buyerNick" jdbcType="VARCHAR" />
+    <result column="BUYER_RATE" property="buyerRate" jdbcType="VARCHAR" />
+    <result column="RECEIVER_AREA_NAME" property="receiverAreaName" jdbcType="VARCHAR" />
+    <result column="RECEIVER_MOBILE" property="receiverMobile" jdbcType="VARCHAR" />
+    <result column="RECEIVER_ZIP_CODE" property="receiverZipCode" jdbcType="VARCHAR" />
+    <result column="RECEIVER" property="receiver" jdbcType="VARCHAR" />
+    <result column="SELLER_ID" property="sellerId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ORDER_ID, PAYMENT, PAYMENT_TYPE, STATUS, CREATE_TIME, UPDATE_TIME, PAYMENT_TIME, 
+    CONSIGN_TIME, END_TIME, CLOSE_TIME, SHIPPING_NAME, SHIPPING_CODE, USER_ID, BUYER_MESSAGE, 
+    BUYER_NICK, BUYER_RATE, RECEIVER_AREA_NAME, RECEIVER_MOBILE, RECEIVER_ZIP_CODE, RECEIVER, 
+    SELLER_ID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mugua.core.pay.mgorder.pojo.MgOrderExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from mg_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from mg_order
+    where ORDER_ID = #{orderId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from mg_order
+    where ORDER_ID = #{orderId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mugua.core.pay.mgorder.pojo.MgOrderExample" >
+    delete from mg_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mugua.core.pay.mgorder.pojo.MgOrder" >
+    insert into mg_order (ORDER_ID, PAYMENT, PAYMENT_TYPE, 
+      STATUS, CREATE_TIME, UPDATE_TIME, 
+      PAYMENT_TIME, CONSIGN_TIME, END_TIME, 
+      CLOSE_TIME, SHIPPING_NAME, SHIPPING_CODE, 
+      USER_ID, BUYER_MESSAGE, BUYER_NICK, 
+      BUYER_RATE, RECEIVER_AREA_NAME, RECEIVER_MOBILE, 
+      RECEIVER_ZIP_CODE, RECEIVER, SELLER_ID
+      )
+    values (#{orderId,jdbcType=BIGINT}, #{payment,jdbcType=DECIMAL}, #{paymentType,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{paymentTime,jdbcType=TIMESTAMP}, #{consignTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
+      #{closeTime,jdbcType=TIMESTAMP}, #{shippingName,jdbcType=VARCHAR}, #{shippingCode,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=VARCHAR}, #{buyerMessage,jdbcType=VARCHAR}, #{buyerNick,jdbcType=VARCHAR}, 
+      #{buyerRate,jdbcType=VARCHAR}, #{receiverAreaName,jdbcType=VARCHAR}, #{receiverMobile,jdbcType=VARCHAR}, 
+      #{receiverZipCode,jdbcType=VARCHAR}, #{receiver,jdbcType=VARCHAR}, #{sellerId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mugua.core.pay.mgorder.pojo.MgOrder" >
+    insert into mg_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        ORDER_ID,
+      </if>
+      <if test="payment != null" >
+        PAYMENT,
+      </if>
+      <if test="paymentType != null" >
+        PAYMENT_TYPE,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="paymentTime != null" >
+        PAYMENT_TIME,
+      </if>
+      <if test="consignTime != null" >
+        CONSIGN_TIME,
+      </if>
+      <if test="endTime != null" >
+        END_TIME,
+      </if>
+      <if test="closeTime != null" >
+        CLOSE_TIME,
+      </if>
+      <if test="shippingName != null" >
+        SHIPPING_NAME,
+      </if>
+      <if test="shippingCode != null" >
+        SHIPPING_CODE,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="buyerMessage != null" >
+        BUYER_MESSAGE,
+      </if>
+      <if test="buyerNick != null" >
+        BUYER_NICK,
+      </if>
+      <if test="buyerRate != null" >
+        BUYER_RATE,
+      </if>
+      <if test="receiverAreaName != null" >
+        RECEIVER_AREA_NAME,
+      </if>
+      <if test="receiverMobile != null" >
+        RECEIVER_MOBILE,
+      </if>
+      <if test="receiverZipCode != null" >
+        RECEIVER_ZIP_CODE,
+      </if>
+      <if test="receiver != null" >
+        RECEIVER,
+      </if>
+      <if test="sellerId != null" >
+        SELLER_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="payment != null" >
+        #{payment,jdbcType=DECIMAL},
+      </if>
+      <if test="paymentType != null" >
+        #{paymentType,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paymentTime != null" >
+        #{paymentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="consignTime != null" >
+        #{consignTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="closeTime != null" >
+        #{closeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shippingName != null" >
+        #{shippingName,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingCode != null" >
+        #{shippingCode,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerMessage != null" >
+        #{buyerMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerNick != null" >
+        #{buyerNick,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerRate != null" >
+        #{buyerRate,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverAreaName != null" >
+        #{receiverAreaName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverMobile != null" >
+        #{receiverMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverZipCode != null" >
+        #{receiverZipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="receiver != null" >
+        #{receiver,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerId != null" >
+        #{sellerId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mugua.core.pay.mgorder.pojo.MgOrderExample" resultType="java.lang.Integer" >
+    select count(*) from mg_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update mg_order
+    <set >
+      <if test="record.orderId != null" >
+        ORDER_ID = #{record.orderId,jdbcType=BIGINT},
+      </if>
+      <if test="record.payment != null" >
+        PAYMENT = #{record.payment,jdbcType=DECIMAL},
+      </if>
+      <if test="record.paymentType != null" >
+        PAYMENT_TYPE = #{record.paymentType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.paymentTime != null" >
+        PAYMENT_TIME = #{record.paymentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.consignTime != null" >
+        CONSIGN_TIME = #{record.consignTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endTime != null" >
+        END_TIME = #{record.endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.closeTime != null" >
+        CLOSE_TIME = #{record.closeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.shippingName != null" >
+        SHIPPING_NAME = #{record.shippingName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shippingCode != null" >
+        SHIPPING_CODE = #{record.shippingCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId != null" >
+        USER_ID = #{record.userId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buyerMessage != null" >
+        BUYER_MESSAGE = #{record.buyerMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buyerNick != null" >
+        BUYER_NICK = #{record.buyerNick,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buyerRate != null" >
+        BUYER_RATE = #{record.buyerRate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiverAreaName != null" >
+        RECEIVER_AREA_NAME = #{record.receiverAreaName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiverMobile != null" >
+        RECEIVER_MOBILE = #{record.receiverMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiverZipCode != null" >
+        RECEIVER_ZIP_CODE = #{record.receiverZipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiver != null" >
+        RECEIVER = #{record.receiver,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellerId != null" >
+        SELLER_ID = #{record.sellerId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update mg_order
+    set ORDER_ID = #{record.orderId,jdbcType=BIGINT},
+      PAYMENT = #{record.payment,jdbcType=DECIMAL},
+      PAYMENT_TYPE = #{record.paymentType,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      PAYMENT_TIME = #{record.paymentTime,jdbcType=TIMESTAMP},
+      CONSIGN_TIME = #{record.consignTime,jdbcType=TIMESTAMP},
+      END_TIME = #{record.endTime,jdbcType=TIMESTAMP},
+      CLOSE_TIME = #{record.closeTime,jdbcType=TIMESTAMP},
+      SHIPPING_NAME = #{record.shippingName,jdbcType=VARCHAR},
+      SHIPPING_CODE = #{record.shippingCode,jdbcType=VARCHAR},
+      USER_ID = #{record.userId,jdbcType=VARCHAR},
+      BUYER_MESSAGE = #{record.buyerMessage,jdbcType=VARCHAR},
+      BUYER_NICK = #{record.buyerNick,jdbcType=VARCHAR},
+      BUYER_RATE = #{record.buyerRate,jdbcType=VARCHAR},
+      RECEIVER_AREA_NAME = #{record.receiverAreaName,jdbcType=VARCHAR},
+      RECEIVER_MOBILE = #{record.receiverMobile,jdbcType=VARCHAR},
+      RECEIVER_ZIP_CODE = #{record.receiverZipCode,jdbcType=VARCHAR},
+      RECEIVER = #{record.receiver,jdbcType=VARCHAR},
+      SELLER_ID = #{record.sellerId,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mugua.core.pay.mgorder.pojo.MgOrder" >
+    update mg_order
+    <set >
+      <if test="payment != null" >
+        PAYMENT = #{payment,jdbcType=DECIMAL},
+      </if>
+      <if test="paymentType != null" >
+        PAYMENT_TYPE = #{paymentType,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paymentTime != null" >
+        PAYMENT_TIME = #{paymentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="consignTime != null" >
+        CONSIGN_TIME = #{consignTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="closeTime != null" >
+        CLOSE_TIME = #{closeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shippingName != null" >
+        SHIPPING_NAME = #{shippingName,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingCode != null" >
+        SHIPPING_CODE = #{shippingCode,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerMessage != null" >
+        BUYER_MESSAGE = #{buyerMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerNick != null" >
+        BUYER_NICK = #{buyerNick,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerRate != null" >
+        BUYER_RATE = #{buyerRate,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverAreaName != null" >
+        RECEIVER_AREA_NAME = #{receiverAreaName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverMobile != null" >
+        RECEIVER_MOBILE = #{receiverMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverZipCode != null" >
+        RECEIVER_ZIP_CODE = #{receiverZipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="receiver != null" >
+        RECEIVER = #{receiver,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerId != null" >
+        SELLER_ID = #{sellerId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ORDER_ID = #{orderId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mugua.core.pay.mgorder.pojo.MgOrder" >
+    update mg_order
+    set PAYMENT = #{payment,jdbcType=DECIMAL},
+      PAYMENT_TYPE = #{paymentType,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      PAYMENT_TIME = #{paymentTime,jdbcType=TIMESTAMP},
+      CONSIGN_TIME = #{consignTime,jdbcType=TIMESTAMP},
+      END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      CLOSE_TIME = #{closeTime,jdbcType=TIMESTAMP},
+      SHIPPING_NAME = #{shippingName,jdbcType=VARCHAR},
+      SHIPPING_CODE = #{shippingCode,jdbcType=VARCHAR},
+      USER_ID = #{userId,jdbcType=VARCHAR},
+      BUYER_MESSAGE = #{buyerMessage,jdbcType=VARCHAR},
+      BUYER_NICK = #{buyerNick,jdbcType=VARCHAR},
+      BUYER_RATE = #{buyerRate,jdbcType=VARCHAR},
+      RECEIVER_AREA_NAME = #{receiverAreaName,jdbcType=VARCHAR},
+      RECEIVER_MOBILE = #{receiverMobile,jdbcType=VARCHAR},
+      RECEIVER_ZIP_CODE = #{receiverZipCode,jdbcType=VARCHAR},
+      RECEIVER = #{receiver,jdbcType=VARCHAR},
+      SELLER_ID = #{sellerId,jdbcType=VARCHAR}
+    where ORDER_ID = #{orderId,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+ <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="format-detection" content="telephone=no">
+    <title>我最喜爱的名片评选活动</title>
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/vote.css">
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/vote.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    <script>
+        (function (doc, win) {
+            var docEl = doc.documentElement,
+                resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                recalc = function () {
+                     var clientWidth = docEl.clientWidth;
+                    if (!clientWidth) return;
+                    if(clientWidth>=750){
+                        docEl.style.fontSize = '100px';
+                    }else{
+                        docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
+                    }
+                };
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);
+        })(document, window);
+    </script>
+</head>
+<body>
+    <table>
+    <span th:text="${applyVo.openid}" class="openidSpan" style="display:none"></span>
+    <span th:text="${applyVo.token}" class="tokenSpan" style="display:none"></span>
+    <tr th:each="apply:${applyVo.list}">
+        <td>
+                <div class="listDiv">
+                	
+                    <ul>
+                        <li>
+                           <span class="choiceSpan voteNone"></span>
+                           <p th:text="${apply.id}" class="numberId">12345</p>
+                        </li>
+                        <li>
+                            <div class="cardImg">
+                                <img th:src="@{${apply.photourl}}" alt="">
+                            </div>
+                        </li>
+                        <li>
+                            <p th:text="${apply.story}" class="storyP">你就是的风景好看都是分开还是科技孵化哈士大夫不和卡尔人和卡尔厄夫空间和你就是的风景好看都是分开还是科技孵化</p>
+                            <p class="voteNumbers">
+                                <span  class="seeSpan"></span>
+                                <span th:text="${apply.num}">2012票</span>
+                            </p>
+                        </li>
+                        <div class="storyDetails">
+                            <div class="storyDetailsImg">
+                            	 <img th:src="@{${apply.photourl}}" alt="">
+                            </div>
+                            <p th:text="${apply.story}" ></p>
+                            <span class="appDownload">我也要机器人</span>
+                            <a href="javascript:location.reload();">暂不<span class="goArrow"></span></a>
+                        </div>
+                    </ul>
+                </div>
+            </td>
+    </tr>
+</table>
+<div class="qrCode" id="androidD">
+        <div class="qrCodeDiv">
+            <img src="/images/androidD.png">
+        </div>
+        <p>长按识别图中二维码</p>
+        <p class="offDivI">完成</p>
+    </div>
+    <div class="qrCode" id="iosD">
+        <div class="qrCodeDiv" >
+            <img src="/images/iosD.png" alt="">
+        </div>
+        <p>长按识别图中二维码</p>
+        <p class="offDivI">完成</p>
+    </div>
+ <div class="tipsDiv">小主，一生只爱一人，一次只能投一票哦~</div>
+    <div class="noneDiv">~~~我们是有底线的~~~</div>
+    <div class="footerDiv">
+        <input type="submit" value="确认投票">
+    </div>
+</body>
+</html>

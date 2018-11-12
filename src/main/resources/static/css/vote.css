@@ -1,0 +1,30 @@
+i{display: inline-block;}
+body{overflow-x: hidden;font-size: 0.35rem;}
+h1{font-size: 0.37rem;margin-bottom: 0.4rem;}
+li{list-style: none;}
+.choiceSpan{width:0.4rem;height:0.4rem;display: inline-block;background-image: url("/images/voteNone.png");background-size: cover;margin-left: 0.1rem;margin-top: 0.5rem;}
+.voteColor{background-image:url("/images/voteColor.png")!important;background-size: cover; }
+.numberId{width:0.8rem;height:0.35rem;line-height: 0.35rem;text-align: center;background-color: #ff962c;font-size: 0.19rem;color:#ffffff;border-radius: 5px;}
+.listDiv{width:100%;height: 2.51rem;margin:0;border-bottom: 1px solid #dcdcdc;overflow: hidden;}
+.listDiv ul{display: flex;justify-content: space-around;margin: 0.32rem 0 0 0;padding: 0;}
+.cardImg{width:2.01rem;height:1.8rem;border-radius: 10px;}
+.cardImg img{width: 100%;height:100%;border-radius: 10px;}
+.storyP{width:3.64rem;font-size: 0.24rem;line-height: 0.41rem;overflow:hidden; text-overflow:ellipsis;display:-webkit-box; -webkit-box-orient:vertical;-webkit-line-clamp:3;margin:0;padding:0; }
+.voteNumbers{margin-top: 0.36rem;font-size: 0.22rem;color:#999999;}
+.seeSpan{width: 0.36rem;height: 0.24rem;background-image: url("/images/seeImg.png");background-size: cover;display: inline-block;vertical-align: text-top;}
+table{width: 100%;}
+.noneDiv{width:100%;height:1rem;text-align: center;line-height: 1rem;font-size: 0.23rem;color:#cdcdcd;}
+.footerDiv input{width:100%;height:1rem;background-color: #ff962c;text-align: center;line-height: 1rem;color:#ffffff;font-size: 0.32rem;position:fixed;left:0;bottom:0;letter-spacing: 3px;border:none;}
+.tipsDiv{width: 4.5rem;height: 2rem;display: none;font-size: 0.3rem;background-color: rgba(0,0,0,0.7);position:fixed;top: 30%;left: 20%;padding:0.1rem;color: #ffffff;text-align: center;line-height: 0.9rem;}
+.storyDetails{width:100%;height:100%;position:fixed;top:0;left:0;margin:0 auto;padding-top:0.15rem;padding-bottom:0.15rem;background-color: #ffffff;z-index: 4;display: none;overflow-y:scroll;}
+.storyDetailsImg{width:7.02rem;height:4.0rem;margin:0 auto;}
+.storyDetailsImg img{width:100%;height:100%;}
+.storyDetails p{width:7rem;font-size: 0.32rem;line-height: 0.51rem;letter-spacing:1px;margin:0.3rem auto;color:#333333}
+.appDownload{width:6.99rem;height:1rem;display: inline-block;text-align: center;line-height: 1rem;color:#ffffff;letter-spacing: 2px;border-radius: 35px;background-color: #ff962c;margin:0 0 0 4%;}
+.qrCode{width: 100%;height: 7.5rem;position: fixed;bottom: 0px;z-index: 10;display: none;background-color:#ffffff}
+.qrCode p{text-align: center;margin-top: 0.7rem;font-size: 0.25rem;}
+.qrCodeDiv{width: 3rem;height: 3rem;margin: 0.8rem auto 0;}
+.qrCodeDiv img{width:100%;height:100%;}
+.qrCode .offDivI{width:6.2rem;height:0.8rem;background-color:#ffc140;border-radius:35px;font-size:0.3rem;font-weight:600;margin-left:auto;margin-right:auto;color:#ffffff;letter-spacing:2px;line-height:0.8rem;}
+.storyDetails a{display:block;color:#cdcdcd;text-align:center;margin-top:0.32rem;margin-bottom:0.32rem;}
+.storyDetails a .goArrow{width:0.5rem;height:0.5rem;vertical-align:middle;display:inline-block;background-image:url("/images/goArrow.png");background-size:cover;}

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>咔芒后台管理系统</title>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta http-equiv="Access-Control-Allow-Origin" content="*">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="icon" href="/images/favicon.ico">
+	<link rel="stylesheet" href="/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="/css/icon.css" media="all" />
+	<link rel="stylesheet" href="/css/newsManagement.css" media="all" />
+</head>
+<body class="main_body">
+	<div class="layui-layout layui-layout-admin">
+		<!-- 顶部 -->
+		<div class="layui-header header">
+			<div class="layui-main">
+				<div class="logo">
+                    <img src="/images/logo.png" alt="咔芒后台管理">
+                </div>
+				<!-- 显示/隐藏菜单 -->
+				<a href="javascript:;" class="iconfont hideMenu icon-menu1"></a>
+			    <!-- 顶部右侧菜单 -->
+                <div class="rightNavDiv">
+                        <a href="/app/management/index">
+                            <i class="iconfont icon-loginout"></i>
+                            <cite>退出</cite>
+                        </a>
+                </div>
+			</div>
+		</div>
+		<!-- 左侧导航 -->
+		<div class="layui-side layui-bg-black">
+			<div class="navBar layui-side-scroll">
+                <ul class="layui-nav layui-nav-tree">
+                	 <li class="layui-nav-item">
+                        <a href="javascript:;" data-url="/app/management/gotomain">
+                            <i class="iconfont icon-computer" data-icon="icon-computer"></i>
+                            <cite>首页</cite>
+                        </a>
+                    </li>
+                	<li class="layui-nav-item">
+                	
+                        <a href="javascript:;" data-url="/app/management/gotonewsList">
+                            <i class="iconfont icon-wenben" data-icon="icon-wenben"></i>
+                            <cite>新闻列表</cite>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;" data-url="/app/management/gotonewsManagement">
+                                <i class="iconfont icon-gonggao" data-icon="icon-gonggao"></i>
+                            <cite>新闻添加</cite>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;" data-url="/app/management/gotoregistrationAudit">
+                            <i class="iconfont icon-text" data-icon="icon-text"></i>
+                            <cite>注册审核</cite>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;" data-url="/app/management/gotoproductAudit">
+                            <i class="layui-icon" data-icon=""></i>
+                            <cite>产品审核</cite>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;" data-url="/app/management/gotoorderList">
+                            <i class="layui-icon" data-icon=""></i>
+                            <cite>订单列表</cite>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;" data-url="/app/management/gotoenterpriseDynamics">
+                            <i class="iconfont icon-new1" data-icon="icon-new1"></i>
+                            <cite>企业动态</cite>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+		</div>
+		<!-- 右侧内容 -->
+		<div class="layui-body layui-form">
+			<div class="layui-tab marg0" lay-filter="bodyTab" id="top_tabs_box">
+				<ul class="layui-tab-title top_tab" id="top_tabs">
+					<li class="layui-this" lay-id=""><i class="iconfont icon-computer"></i> <cite>首页</cite></li>
+				</ul>
+				<ul class="layui-nav closeBox">
+				  <li class="layui-nav-item">
+				    <a href="javascript:;"><i class="iconfont icon-caozuo"></i> 页面操作</a>
+				    <dl class="layui-nav-child">
+					  <dd><a href="javascript:;" class="refresh refreshThis"><i class="layui-icon">&#x1002;</i> 刷新当前</a></dd>
+				      <dd><a href="javascript:;" class="closePageOther"><i class="iconfont icon-prohibit"></i> 关闭其他</a></dd>
+				      <dd><a href="javascript:;" class="closePageAll"><i class="iconfont icon-guanbi"></i> 关闭全部</a></dd>
+				    </dl>
+				  </li>
+				</ul>
+				<div class="layui-tab-content clildFrame">
+					<div class="layui-tab-item layui-show" id="iframeId">
+						<iframe src="/app/management/gotomain"></iframe>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 底部 -->
+		<div class="layui-footer footer">
+			<p>2017©木瓜网络</p>
+		</div>
+	</div>
+	
+	<!-- 移动导航 -->
+	<div class="site-tree-mobile layui-hide"><i class="layui-icon">&#xe602;</i></div>
+	<div class="site-mobile-shade"></div>
+
+	<script type="text/javascript" src="/layui/layui.js"></script>
+	<script type="text/javascript" src="/js/leftNav.js"></script>
+	<script type="text/javascript" src="/js/index.js"></script>
+</body>
+</html>

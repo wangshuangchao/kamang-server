@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="/layui/css/layui.css" media="all" />
+    <link rel="stylesheet" href="/css/icon.css" media="all" />
+    <link rel="stylesheet" href="/css/public.css">
+</head>
+<body class="childrenBody" style="position: relative;">
+    <blockquote class="layui-elem-quote news_search">
+        <div class="layui-inline">
+            <div class="layui-input-inline">
+                <input type="text" value="" placeholder="输入标题 / 类型" class="layui-input search_input">
+            </div>
+            <a class="layui-btn search_btn">查询</a>
+        </div>
+        <div class="layui-inline">
+            <a class="layui-btn layui-btn-normal dynamicsAdd_btn">添加</a>
+        </div>
+        <div class="layui-inline">
+            <a class="layui-btn layui-btn-danger batchDel">批量删除</a>
+        </div>
+    </blockquote>
+    <div class="addDyamicsDiv newsContent" style="display: none">
+        <p>
+            <i class="layui-icon" style="color:red" id="closeDivIcon" title="关闭">&#x1006;</i>
+        </p>
+        <ul>
+            <li class="clearfix">
+                <span class="titleSpan">标题</span>
+                <form action="">
+                    <div class="articleType">
+                        <div class="dxAl pubDivInp addDynamicTitle">
+                            <input type="radio" name="articleType" id="chanpin" value="产品动态" checked>
+                            <label for="chanpin">产品动态</label>
+                        </div>
+                        <div class="fxTs pubDivInp addDynamicTitle">
+                            <input type="radio" name="articleType" id="dongtai" value="企业入驻">
+                            <label for="dongtai">企业入驻</label>
+                        </div>
+                    </div>
+                </form>
+            </li>
+            <li class="clearfix">
+                <span class="titleSpan">内容</span>
+                <input type="text" class="titleInp" id="dynamicContent">
+            </li>
+            <li class="clearfix">
+                <span class="titleSpan">类型</span>
+                <form action="">
+                    <div class="articleType">
+                        <div class="dxAl pubDivInp titleType">
+                            <input type="radio" name="articleType" id="dxAl" value="典型案例" checked>
+                            <label for="dxAl">典型案例</label>
+                        </div>
+                        <div class="fxTs pubDivInp titleType">
+                            <input type="radio" name="articleType" id="fxTs" value="风险提示">
+                            <label for="fxTs">风险提示</label>
+                        </div>
+                        <div class="zdLy pubDivInp titleType">
+                            <input type="radio" name="articleType" id="zdLy" value="重点领域">
+                            <label for="zdLy">重点领域</label>
+                        </div>
+                        <div class="xyDsj pubDivInp titleType">
+                            <input type="radio" name="articleType" id="xyDsj" value="信用大数据">
+                            <label for="xyDsj">信用大数据</label>
+                        </div>
+                    </div>
+                </form>
+            </li>
+            <li class="clearfix">
+                <span class="titleSpan">分类</span>
+                <form action="">
+                    <div class="articleType">
+                        <div class="dxAl pubDivInp contentType">
+                            <input type="radio" name="articleType" id="one" value="1" checked>
+                            <label for="one">1</label>
+                        </div>
+                        <div class="fxTs pubDivInp contentType">
+                            <input type="radio" name="articleType" id="two" value="2">
+                            <label for="two">2</label>
+                        </div>
+                    </div>
+                </form>
+            </li>
+            <li class="clearfix">
+                <span class="titleSpan">产品ID</span>
+                <input type="text" class="titleInp" id="productId">
+            </li>
+            <li class="clearfix">
+                <span class="titleSpan">名片ID</span>
+                <input type="text" class="titleInp" id="cardId">
+            </li>
+        </ul>
+        <div class="site-demo-button" style="text-align: center;">
+            <button class="layui-btn site-demo-layedit" data-type="content" id="dynamicsBtn">发布</button>
+        </div>
+    </div>
+    <div class="layui-form  enterprise_list">
+        <table class="layui-table">
+            <colgroup>
+                <col width="1%">
+                <col width="2%">
+                <col width="3%">
+                <col width="10%">
+                <col width="3%">
+                <col width="2%">
+                <col width="3%">
+                <col width="3%">
+                <col width="3%">
+            </colgroup>
+            <thead>
+            <tr>
+                <th><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose" id="allChoose"></th>
+                <th>编号</th>
+                <th>标题</th>
+                <th>内容</th>
+                <th>类型</th>
+                <th>分类</th>
+                <th>产品ID</th>
+                <th>名片ID</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody class="enterprise_content">
+
+            </tbody>
+        </table>
+    </div>
+    <div id="page"></div>
+    <script type="text/javascript" src="/layui/layui.js"></script>
+    <script type="text/javascript" src="/js/enterpriseDynamics.js"></script>
+</body>
+</html>

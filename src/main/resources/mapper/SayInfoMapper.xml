@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mugua.core.sayInfo.mapper.SayInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.mugua.core.sayInfo.pojo.SayInfo" >
+    <id column="SAY_ID" property="sayId" jdbcType="INTEGER" />
+    <result column="SAY_PHOTO_URL" property="sayPhotoUrl" jdbcType="VARCHAR" />
+    <result column="SAY_PRODUCT_ID" property="sayProductId" jdbcType="VARCHAR" />
+    <result column="VISITOR_NUM" property="visitorNum" jdbcType="INTEGER" />
+    <result column="SAY_TYPE" property="sayType" jdbcType="VARCHAR" />
+    <result column="EXT" property="ext" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.mugua.core.sayInfo.pojo.SayInfo" extends="BaseResultMap" >
+    <result column="SAY_WORD_URL" property="sayWordUrl" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    SAY_ID, SAY_PHOTO_URL, SAY_PRODUCT_ID, VISITOR_NUM, SAY_TYPE, EXT
+  </sql>
+  <sql id="Blob_Column_List" >
+    SAY_WORD_URL
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.mugua.core.sayInfo.pojo.SayInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from say_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mugua.core.sayInfo.pojo.SayInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from say_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from say_info
+    where SAY_ID = #{sayId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from say_info
+    where SAY_ID = #{sayId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mugua.core.sayInfo.pojo.SayInfoExample" >
+    delete from say_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mugua.core.sayInfo.pojo.SayInfo" >
+    insert into say_info (SAY_ID, SAY_PHOTO_URL, SAY_PRODUCT_ID, 
+      VISITOR_NUM, SAY_TYPE, EXT, 
+      SAY_WORD_URL)
+    values (#{sayId,jdbcType=INTEGER}, #{sayPhotoUrl,jdbcType=VARCHAR}, #{sayProductId,jdbcType=VARCHAR}, 
+      #{visitorNum,jdbcType=INTEGER}, #{sayType,jdbcType=VARCHAR}, #{ext,jdbcType=VARCHAR}, 
+      #{sayWordUrl,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mugua.core.sayInfo.pojo.SayInfo" >
+    insert into say_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sayId != null" >
+        SAY_ID,
+      </if>
+      <if test="sayPhotoUrl != null" >
+        SAY_PHOTO_URL,
+      </if>
+      <if test="sayProductId != null" >
+        SAY_PRODUCT_ID,
+      </if>
+      <if test="visitorNum != null" >
+        VISITOR_NUM,
+      </if>
+      <if test="sayType != null" >
+        SAY_TYPE,
+      </if>
+      <if test="ext != null" >
+        EXT,
+      </if>
+      <if test="sayWordUrl != null" >
+        SAY_WORD_URL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sayId != null" >
+        #{sayId,jdbcType=INTEGER},
+      </if>
+      <if test="sayPhotoUrl != null" >
+        #{sayPhotoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sayProductId != null" >
+        #{sayProductId,jdbcType=VARCHAR},
+      </if>
+      <if test="visitorNum != null" >
+        #{visitorNum,jdbcType=INTEGER},
+      </if>
+      <if test="sayType != null" >
+        #{sayType,jdbcType=VARCHAR},
+      </if>
+      <if test="ext != null" >
+        #{ext,jdbcType=VARCHAR},
+      </if>
+      <if test="sayWordUrl != null" >
+        #{sayWordUrl,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mugua.core.sayInfo.pojo.SayInfoExample" resultType="java.lang.Integer" >
+    select count(*) from say_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update say_info
+    <set >
+      <if test="record.sayId != null" >
+        SAY_ID = #{record.sayId,jdbcType=INTEGER},
+      </if>
+      <if test="record.sayPhotoUrl != null" >
+        SAY_PHOTO_URL = #{record.sayPhotoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sayProductId != null" >
+        SAY_PRODUCT_ID = #{record.sayProductId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.visitorNum != null" >
+        VISITOR_NUM = #{record.visitorNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.sayType != null" >
+        SAY_TYPE = #{record.sayType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ext != null" >
+        EXT = #{record.ext,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sayWordUrl != null" >
+        SAY_WORD_URL = #{record.sayWordUrl,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update say_info
+    set SAY_ID = #{record.sayId,jdbcType=INTEGER},
+      SAY_PHOTO_URL = #{record.sayPhotoUrl,jdbcType=VARCHAR},
+      SAY_PRODUCT_ID = #{record.sayProductId,jdbcType=VARCHAR},
+      VISITOR_NUM = #{record.visitorNum,jdbcType=INTEGER},
+      SAY_TYPE = #{record.sayType,jdbcType=VARCHAR},
+      EXT = #{record.ext,jdbcType=VARCHAR},
+      SAY_WORD_URL = #{record.sayWordUrl,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update say_info
+    set SAY_ID = #{record.sayId,jdbcType=INTEGER},
+      SAY_PHOTO_URL = #{record.sayPhotoUrl,jdbcType=VARCHAR},
+      SAY_PRODUCT_ID = #{record.sayProductId,jdbcType=VARCHAR},
+      VISITOR_NUM = #{record.visitorNum,jdbcType=INTEGER},
+      SAY_TYPE = #{record.sayType,jdbcType=VARCHAR},
+      EXT = #{record.ext,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mugua.core.sayInfo.pojo.SayInfo" >
+    update say_info
+    <set >
+      <if test="sayPhotoUrl != null" >
+        SAY_PHOTO_URL = #{sayPhotoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sayProductId != null" >
+        SAY_PRODUCT_ID = #{sayProductId,jdbcType=VARCHAR},
+      </if>
+      <if test="visitorNum != null" >
+        VISITOR_NUM = #{visitorNum,jdbcType=INTEGER},
+      </if>
+      <if test="sayType != null" >
+        SAY_TYPE = #{sayType,jdbcType=VARCHAR},
+      </if>
+      <if test="ext != null" >
+        EXT = #{ext,jdbcType=VARCHAR},
+      </if>
+      <if test="sayWordUrl != null" >
+        SAY_WORD_URL = #{sayWordUrl,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where SAY_ID = #{sayId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.mugua.core.sayInfo.pojo.SayInfo" >
+    update say_info
+    set SAY_PHOTO_URL = #{sayPhotoUrl,jdbcType=VARCHAR},
+      SAY_PRODUCT_ID = #{sayProductId,jdbcType=VARCHAR},
+      VISITOR_NUM = #{visitorNum,jdbcType=INTEGER},
+      SAY_TYPE = #{sayType,jdbcType=VARCHAR},
+      EXT = #{ext,jdbcType=VARCHAR},
+      SAY_WORD_URL = #{sayWordUrl,jdbcType=LONGVARCHAR}
+    where SAY_ID = #{sayId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mugua.core.sayInfo.pojo.SayInfo" >
+    update say_info
+    set SAY_PHOTO_URL = #{sayPhotoUrl,jdbcType=VARCHAR},
+      SAY_PRODUCT_ID = #{sayProductId,jdbcType=VARCHAR},
+      VISITOR_NUM = #{visitorNum,jdbcType=INTEGER},
+      SAY_TYPE = #{sayType,jdbcType=VARCHAR},
+      EXT = #{ext,jdbcType=VARCHAR}
+    where SAY_ID = #{sayId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mugua.core.tipOffInfo.mapper.TipOffInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.mugua.core.tipOffInfo.pojo.TipOffInfo" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="BUSINESS_LICENSE_PHOTO_URL" property="businessLicensePhotoUrl" jdbcType="VARCHAR" />
+    <result column="LEGAL_PERSON_NAME" property="legalPersonName" jdbcType="VARCHAR" />
+    <result column="LEGAL_PERSON_TEL" property="legalPersonTel" jdbcType="VARCHAR" />
+    <result column="LEGAL_PERSON_PHOTO_URL" property="legalPersonPhotoUrl" jdbcType="VARCHAR" />
+    <result column="ORGANIZATION_CODE" property="organizationCode" jdbcType="VARCHAR" />
+    <result column="CHARGE_PERSON_NAME" property="chargePersonName" jdbcType="VARCHAR" />
+    <result column="CHARGE_PERSON_TEL" property="chargePersonTel" jdbcType="VARCHAR" />
+    <result column="REMARKS_COLUMN_ONE" property="remarksColumnOne" jdbcType="VARCHAR" />
+    <result column="REMARKS_COLUMN_TWO" property="remarksColumnTwo" jdbcType="VARCHAR" />
+    <result column="REMARKS_COLUMN_THREE" property="remarksColumnThree" jdbcType="VARCHAR" />
+    <result column="REMARKS_COLUMN_FOUR" property="remarksColumnFour" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, BUSINESS_LICENSE_PHOTO_URL, LEGAL_PERSON_NAME, LEGAL_PERSON_TEL, LEGAL_PERSON_PHOTO_URL, 
+    ORGANIZATION_CODE, CHARGE_PERSON_NAME, CHARGE_PERSON_TEL, REMARKS_COLUMN_ONE, REMARKS_COLUMN_TWO, 
+    REMARKS_COLUMN_THREE, REMARKS_COLUMN_FOUR
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mugua.core.tipOffInfo.pojo.TipOffInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tip_off_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tip_off_info
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tip_off_info
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mugua.core.tipOffInfo.pojo.TipOffInfoExample" >
+    delete from tip_off_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mugua.core.tipOffInfo.pojo.TipOffInfo" >
+    insert into tip_off_info (ID, BUSINESS_LICENSE_PHOTO_URL, LEGAL_PERSON_NAME, 
+      LEGAL_PERSON_TEL, LEGAL_PERSON_PHOTO_URL, ORGANIZATION_CODE, 
+      CHARGE_PERSON_NAME, CHARGE_PERSON_TEL, REMARKS_COLUMN_ONE, 
+      REMARKS_COLUMN_TWO, REMARKS_COLUMN_THREE, REMARKS_COLUMN_FOUR
+      )
+    values (#{id,jdbcType=VARCHAR}, #{businessLicensePhotoUrl,jdbcType=VARCHAR}, #{legalPersonName,jdbcType=VARCHAR}, 
+      #{legalPersonTel,jdbcType=VARCHAR}, #{legalPersonPhotoUrl,jdbcType=VARCHAR}, #{organizationCode,jdbcType=VARCHAR}, 
+      #{chargePersonName,jdbcType=VARCHAR}, #{chargePersonTel,jdbcType=VARCHAR}, #{remarksColumnOne,jdbcType=VARCHAR}, 
+      #{remarksColumnTwo,jdbcType=VARCHAR}, #{remarksColumnThree,jdbcType=VARCHAR}, #{remarksColumnFour,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mugua.core.tipOffInfo.pojo.TipOffInfo" >
+    insert into tip_off_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="businessLicensePhotoUrl != null" >
+        BUSINESS_LICENSE_PHOTO_URL,
+      </if>
+      <if test="legalPersonName != null" >
+        LEGAL_PERSON_NAME,
+      </if>
+      <if test="legalPersonTel != null" >
+        LEGAL_PERSON_TEL,
+      </if>
+      <if test="legalPersonPhotoUrl != null" >
+        LEGAL_PERSON_PHOTO_URL,
+      </if>
+      <if test="organizationCode != null" >
+        ORGANIZATION_CODE,
+      </if>
+      <if test="chargePersonName != null" >
+        CHARGE_PERSON_NAME,
+      </if>
+      <if test="chargePersonTel != null" >
+        CHARGE_PERSON_TEL,
+      </if>
+      <if test="remarksColumnOne != null" >
+        REMARKS_COLUMN_ONE,
+      </if>
+      <if test="remarksColumnTwo != null" >
+        REMARKS_COLUMN_TWO,
+      </if>
+      <if test="remarksColumnThree != null" >
+        REMARKS_COLUMN_THREE,
+      </if>
+      <if test="remarksColumnFour != null" >
+        REMARKS_COLUMN_FOUR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicensePhotoUrl != null" >
+        #{businessLicensePhotoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPersonName != null" >
+        #{legalPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPersonTel != null" >
+        #{legalPersonTel,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPersonPhotoUrl != null" >
+        #{legalPersonPhotoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationCode != null" >
+        #{organizationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="chargePersonName != null" >
+        #{chargePersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="chargePersonTel != null" >
+        #{chargePersonTel,jdbcType=VARCHAR},
+      </if>
+      <if test="remarksColumnOne != null" >
+        #{remarksColumnOne,jdbcType=VARCHAR},
+      </if>
+      <if test="remarksColumnTwo != null" >
+        #{remarksColumnTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="remarksColumnThree != null" >
+        #{remarksColumnThree,jdbcType=VARCHAR},
+      </if>
+      <if test="remarksColumnFour != null" >
+        #{remarksColumnFour,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mugua.core.tipOffInfo.pojo.TipOffInfoExample" resultType="java.lang.Integer" >
+    select count(*) from tip_off_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tip_off_info
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessLicensePhotoUrl != null" >
+        BUSINESS_LICENSE_PHOTO_URL = #{record.businessLicensePhotoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.legalPersonName != null" >
+        LEGAL_PERSON_NAME = #{record.legalPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.legalPersonTel != null" >
+        LEGAL_PERSON_TEL = #{record.legalPersonTel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.legalPersonPhotoUrl != null" >
+        LEGAL_PERSON_PHOTO_URL = #{record.legalPersonPhotoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.organizationCode != null" >
+        ORGANIZATION_CODE = #{record.organizationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chargePersonName != null" >
+        CHARGE_PERSON_NAME = #{record.chargePersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chargePersonTel != null" >
+        CHARGE_PERSON_TEL = #{record.chargePersonTel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarksColumnOne != null" >
+        REMARKS_COLUMN_ONE = #{record.remarksColumnOne,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarksColumnTwo != null" >
+        REMARKS_COLUMN_TWO = #{record.remarksColumnTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarksColumnThree != null" >
+        REMARKS_COLUMN_THREE = #{record.remarksColumnThree,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarksColumnFour != null" >
+        REMARKS_COLUMN_FOUR = #{record.remarksColumnFour,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tip_off_info
+    set ID = #{record.id,jdbcType=VARCHAR},
+      BUSINESS_LICENSE_PHOTO_URL = #{record.businessLicensePhotoUrl,jdbcType=VARCHAR},
+      LEGAL_PERSON_NAME = #{record.legalPersonName,jdbcType=VARCHAR},
+      LEGAL_PERSON_TEL = #{record.legalPersonTel,jdbcType=VARCHAR},
+      LEGAL_PERSON_PHOTO_URL = #{record.legalPersonPhotoUrl,jdbcType=VARCHAR},
+      ORGANIZATION_CODE = #{record.organizationCode,jdbcType=VARCHAR},
+      CHARGE_PERSON_NAME = #{record.chargePersonName,jdbcType=VARCHAR},
+      CHARGE_PERSON_TEL = #{record.chargePersonTel,jdbcType=VARCHAR},
+      REMARKS_COLUMN_ONE = #{record.remarksColumnOne,jdbcType=VARCHAR},
+      REMARKS_COLUMN_TWO = #{record.remarksColumnTwo,jdbcType=VARCHAR},
+      REMARKS_COLUMN_THREE = #{record.remarksColumnThree,jdbcType=VARCHAR},
+      REMARKS_COLUMN_FOUR = #{record.remarksColumnFour,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mugua.core.tipOffInfo.pojo.TipOffInfo" >
+    update tip_off_info
+    <set >
+      <if test="businessLicensePhotoUrl != null" >
+        BUSINESS_LICENSE_PHOTO_URL = #{businessLicensePhotoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPersonName != null" >
+        LEGAL_PERSON_NAME = #{legalPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPersonTel != null" >
+        LEGAL_PERSON_TEL = #{legalPersonTel,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPersonPhotoUrl != null" >
+        LEGAL_PERSON_PHOTO_URL = #{legalPersonPhotoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationCode != null" >
+        ORGANIZATION_CODE = #{organizationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="chargePersonName != null" >
+        CHARGE_PERSON_NAME = #{chargePersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="chargePersonTel != null" >
+        CHARGE_PERSON_TEL = #{chargePersonTel,jdbcType=VARCHAR},
+      </if>
+      <if test="remarksColumnOne != null" >
+        REMARKS_COLUMN_ONE = #{remarksColumnOne,jdbcType=VARCHAR},
+      </if>
+      <if test="remarksColumnTwo != null" >
+        REMARKS_COLUMN_TWO = #{remarksColumnTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="remarksColumnThree != null" >
+        REMARKS_COLUMN_THREE = #{remarksColumnThree,jdbcType=VARCHAR},
+      </if>
+      <if test="remarksColumnFour != null" >
+        REMARKS_COLUMN_FOUR = #{remarksColumnFour,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mugua.core.tipOffInfo.pojo.TipOffInfo" >
+    update tip_off_info
+    set BUSINESS_LICENSE_PHOTO_URL = #{businessLicensePhotoUrl,jdbcType=VARCHAR},
+      LEGAL_PERSON_NAME = #{legalPersonName,jdbcType=VARCHAR},
+      LEGAL_PERSON_TEL = #{legalPersonTel,jdbcType=VARCHAR},
+      LEGAL_PERSON_PHOTO_URL = #{legalPersonPhotoUrl,jdbcType=VARCHAR},
+      ORGANIZATION_CODE = #{organizationCode,jdbcType=VARCHAR},
+      CHARGE_PERSON_NAME = #{chargePersonName,jdbcType=VARCHAR},
+      CHARGE_PERSON_TEL = #{chargePersonTel,jdbcType=VARCHAR},
+      REMARKS_COLUMN_ONE = #{remarksColumnOne,jdbcType=VARCHAR},
+      REMARKS_COLUMN_TWO = #{remarksColumnTwo,jdbcType=VARCHAR},
+      REMARKS_COLUMN_THREE = #{remarksColumnThree,jdbcType=VARCHAR},
+      REMARKS_COLUMN_FOUR = #{remarksColumnFour,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

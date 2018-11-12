@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mugua.core.pay.mggoods.mapper.MgGoodsMapper">
+	<resultMap id="BaseResultMap" type="com.mugua.core.pay.mggoods.pojo.MgGoods">
+		<id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="NAME" property="name" jdbcType="VARCHAR" />
+		<result column="DETAIL" property="detail" jdbcType="VARCHAR" />
+		<result column="PHOTO1" property="photo1" jdbcType="VARCHAR" />
+		<result column="PHOTO2" property="photo2" jdbcType="VARCHAR" />
+		<result column="PHOTO3" property="photo3" jdbcType="VARCHAR" />
+		<result column="PHOTO4" property="photo4" jdbcType="VARCHAR" />
+		<result column="PHOTO5" property="photo5" jdbcType="VARCHAR" />
+		<result column="PHOTO6" property="photo6" jdbcType="VARCHAR" />
+		<result column="PHOTO7" property="photo7" jdbcType="VARCHAR" />
+		<result column="PRICE" property="price" jdbcType="DOUBLE" />
+		<result column="NUM" property="num" jdbcType="INTEGER" />
+		<result column="IS_SHOT" property="isShot" jdbcType="INTEGER" />
+		<result column="IS_RECOMMEND" property="isRecommend" jdbcType="INTEGER" />
+		<result column="MERCHANT" property="merchant" jdbcType="VARCHAR" />
+		<result column="IS_CERTIFICATION" property="isCertification"
+			jdbcType="VARCHAR" />
+		<result column="PHONE" property="phone" jdbcType="VARCHAR" />
+		<result column="IS_LIMITID" property="isLimitid" jdbcType="INTEGER" />
+		<result column="LIMITID" property="limitid" jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		ID, NAME, DETAIL, PHOTO1, PHOTO2, PHOTO3, PHOTO4, PHOTO5, PHOTO6, PHOTO7,
+		PRICE,
+		NUM, IS_SHOT, IS_RECOMMEND, MERCHANT, IS_CERTIFICATION, PHONE, IS_LIMITID,
+		LIMITID
+	</sql>
+	<select id="selectByExample" resultMap="BaseResultMap"
+		parameterType="com.mugua.core.pay.mggoods.pojo.MgGoodsExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from mg_goods
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+		<if test="startRow != null and pageSize !=null and pageSize !=0">
+			limit #{startRow},#{pageSize}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from mg_goods
+		where ID = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from mg_goods
+		where ID = #{id,jdbcType=VARCHAR}
+	</delete>
+	<delete id="deleteByExample" parameterType="com.mugua.core.pay.mggoods.pojo.MgGoodsExample">
+		delete from mg_goods
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="com.mugua.core.pay.mggoods.pojo.MgGoods">
+		insert into mg_goods (ID, NAME, DETAIL,
+		PHOTO1, PHOTO2, PHOTO3,
+		PHOTO4, PHOTO5, PHOTO6,
+		PHOTO7, PRICE, NUM,
+		IS_SHOT, IS_RECOMMEND, MERCHANT,
+		IS_CERTIFICATION, PHONE, IS_LIMITID,
+		LIMITID)
+		values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
+		#{detail,jdbcType=VARCHAR},
+		#{photo1,jdbcType=VARCHAR}, #{photo2,jdbcType=VARCHAR}, #{photo3,jdbcType=VARCHAR},
+		#{photo4,jdbcType=VARCHAR}, #{photo5,jdbcType=VARCHAR},
+		#{photo6,jdbcType=VARCHAR},
+		#{photo7,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE}, #{num,jdbcType=INTEGER},
+		#{isShot,jdbcType=INTEGER}, #{isRecommend,jdbcType=INTEGER},
+		#{merchant,jdbcType=VARCHAR},
+		#{isCertification,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{isLimitid,jdbcType=INTEGER},
+		#{limitid,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="com.mugua.core.pay.mggoods.pojo.MgGoods">
+		insert into mg_goods
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="name != null">
+				NAME,
+			</if>
+			<if test="detail != null">
+				DETAIL,
+			</if>
+			<if test="photo1 != null">
+				PHOTO1,
+			</if>
+			<if test="photo2 != null">
+				PHOTO2,
+			</if>
+			<if test="photo3 != null">
+				PHOTO3,
+			</if>
+			<if test="photo4 != null">
+				PHOTO4,
+			</if>
+			<if test="photo5 != null">
+				PHOTO5,
+			</if>
+			<if test="photo6 != null">
+				PHOTO6,
+			</if>
+			<if test="photo7 != null">
+				PHOTO7,
+			</if>
+			<if test="price != null">
+				PRICE,
+			</if>
+			<if test="num != null">
+				NUM,
+			</if>
+			<if test="isShot != null">
+				IS_SHOT,
+			</if>
+			<if test="isRecommend != null">
+				IS_RECOMMEND,
+			</if>
+			<if test="merchant != null">
+				MERCHANT,
+			</if>
+			<if test="isCertification != null">
+				IS_CERTIFICATION,
+			</if>
+			<if test="phone != null">
+				PHONE,
+			</if>
+			<if test="isLimitid != null">
+				IS_LIMITID,
+			</if>
+			<if test="limitid != null">
+				LIMITID,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="detail != null">
+				#{detail,jdbcType=VARCHAR},
+			</if>
+			<if test="photo1 != null">
+				#{photo1,jdbcType=VARCHAR},
+			</if>
+			<if test="photo2 != null">
+				#{photo2,jdbcType=VARCHAR},
+			</if>
+			<if test="photo3 != null">
+				#{photo3,jdbcType=VARCHAR},
+			</if>
+			<if test="photo4 != null">
+				#{photo4,jdbcType=VARCHAR},
+			</if>
+			<if test="photo5 != null">
+				#{photo5,jdbcType=VARCHAR},
+			</if>
+			<if test="photo6 != null">
+				#{photo6,jdbcType=VARCHAR},
+			</if>
+			<if test="photo7 != null">
+				#{photo7,jdbcType=VARCHAR},
+			</if>
+			<if test="price != null">
+				#{price,jdbcType=DOUBLE},
+			</if>
+			<if test="num != null">
+				#{num,jdbcType=INTEGER},
+			</if>
+			<if test="isShot != null">
+				#{isShot,jdbcType=INTEGER},
+			</if>
+			<if test="isRecommend != null">
+				#{isRecommend,jdbcType=INTEGER},
+			</if>
+			<if test="merchant != null">
+				#{merchant,jdbcType=VARCHAR},
+			</if>
+			<if test="isCertification != null">
+				#{isCertification,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				#{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="isLimitid != null">
+				#{isLimitid,jdbcType=INTEGER},
+			</if>
+			<if test="limitid != null">
+				#{limitid,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="com.mugua.core.pay.mggoods.pojo.MgGoodsExample"
+		resultType="java.lang.Integer">
+		select count(*) from mg_goods
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update mg_goods
+		<set>
+			<if test="record.id != null">
+				ID = #{record.id,jdbcType=VARCHAR},
+			</if>
+			<if test="record.name != null">
+				NAME = #{record.name,jdbcType=VARCHAR},
+			</if>
+			<if test="record.detail != null">
+				DETAIL = #{record.detail,jdbcType=VARCHAR},
+			</if>
+			<if test="record.photo1 != null">
+				PHOTO1 = #{record.photo1,jdbcType=VARCHAR},
+			</if>
+			<if test="record.photo2 != null">
+				PHOTO2 = #{record.photo2,jdbcType=VARCHAR},
+			</if>
+			<if test="record.photo3 != null">
+				PHOTO3 = #{record.photo3,jdbcType=VARCHAR},
+			</if>
+			<if test="record.photo4 != null">
+				PHOTO4 = #{record.photo4,jdbcType=VARCHAR},
+			</if>
+			<if test="record.photo5 != null">
+				PHOTO5 = #{record.photo5,jdbcType=VARCHAR},
+			</if>
+			<if test="record.photo6 != null">
+				PHOTO6 = #{record.photo6,jdbcType=VARCHAR},
+			</if>
+			<if test="record.photo7 != null">
+				PHOTO7 = #{record.photo7,jdbcType=VARCHAR},
+			</if>
+			<if test="record.price != null">
+				PRICE = #{record.price,jdbcType=DOUBLE},
+			</if>
+			<if test="record.num != null">
+				NUM = #{record.num,jdbcType=INTEGER},
+			</if>
+			<if test="record.isShot != null">
+				IS_SHOT = #{record.isShot,jdbcType=INTEGER},
+			</if>
+			<if test="record.isRecommend != null">
+				IS_RECOMMEND = #{record.isRecommend,jdbcType=INTEGER},
+			</if>
+			<if test="record.merchant != null">
+				MERCHANT = #{record.merchant,jdbcType=VARCHAR},
+			</if>
+			<if test="record.isCertification != null">
+				IS_CERTIFICATION = #{record.isCertification,jdbcType=VARCHAR},
+			</if>
+			<if test="record.phone != null">
+				PHONE = #{record.phone,jdbcType=VARCHAR},
+			</if>
+			<if test="record.isLimitid != null">
+				IS_LIMITID = #{record.isLimitid,jdbcType=INTEGER},
+			</if>
+			<if test="record.limitid != null">
+				LIMITID = #{record.limitid,jdbcType=INTEGER},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update mg_goods
+		set ID = #{record.id,jdbcType=VARCHAR},
+		NAME = #{record.name,jdbcType=VARCHAR},
+		DETAIL = #{record.detail,jdbcType=VARCHAR},
+		PHOTO1 = #{record.photo1,jdbcType=VARCHAR},
+		PHOTO2 = #{record.photo2,jdbcType=VARCHAR},
+		PHOTO3 = #{record.photo3,jdbcType=VARCHAR},
+		PHOTO4 = #{record.photo4,jdbcType=VARCHAR},
+		PHOTO5 = #{record.photo5,jdbcType=VARCHAR},
+		PHOTO6 = #{record.photo6,jdbcType=VARCHAR},
+		PHOTO7 = #{record.photo7,jdbcType=VARCHAR},
+		PRICE = #{record.price,jdbcType=DOUBLE},
+		NUM = #{record.num,jdbcType=INTEGER},
+		IS_SHOT = #{record.isShot,jdbcType=INTEGER},
+		IS_RECOMMEND = #{record.isRecommend,jdbcType=INTEGER},
+		MERCHANT = #{record.merchant,jdbcType=VARCHAR},
+		IS_CERTIFICATION = #{record.isCertification,jdbcType=VARCHAR},
+		PHONE = #{record.phone,jdbcType=VARCHAR},
+		IS_LIMITID = #{record.isLimitid,jdbcType=INTEGER},
+		LIMITID = #{record.limitid,jdbcType=INTEGER}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="com.mugua.core.pay.mggoods.pojo.MgGoods">
+		update mg_goods
+		<set>
+			<if test="name != null">
+				NAME = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="detail != null">
+				DETAIL = #{detail,jdbcType=VARCHAR},
+			</if>
+			<if test="photo1 != null">
+				PHOTO1 = #{photo1,jdbcType=VARCHAR},
+			</if>
+			<if test="photo2 != null">
+				PHOTO2 = #{photo2,jdbcType=VARCHAR},
+			</if>
+			<if test="photo3 != null">
+				PHOTO3 = #{photo3,jdbcType=VARCHAR},
+			</if>
+			<if test="photo4 != null">
+				PHOTO4 = #{photo4,jdbcType=VARCHAR},
+			</if>
+			<if test="photo5 != null">
+				PHOTO5 = #{photo5,jdbcType=VARCHAR},
+			</if>
+			<if test="photo6 != null">
+				PHOTO6 = #{photo6,jdbcType=VARCHAR},
+			</if>
+			<if test="photo7 != null">
+				PHOTO7 = #{photo7,jdbcType=VARCHAR},
+			</if>
+			<if test="price != null">
+				PRICE = #{price,jdbcType=DOUBLE},
+			</if>
+			<if test="num != null">
+				NUM = #{num,jdbcType=INTEGER},
+			</if>
+			<if test="isShot != null">
+				IS_SHOT = #{isShot,jdbcType=INTEGER},
+			</if>
+			<if test="isRecommend != null">
+				IS_RECOMMEND = #{isRecommend,jdbcType=INTEGER},
+			</if>
+			<if test="merchant != null">
+				MERCHANT = #{merchant,jdbcType=VARCHAR},
+			</if>
+			<if test="isCertification != null">
+				IS_CERTIFICATION = #{isCertification,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				PHONE = #{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="isLimitid != null">
+				IS_LIMITID = #{isLimitid,jdbcType=INTEGER},
+			</if>
+			<if test="limitid != null">
+				LIMITID = #{limitid,jdbcType=INTEGER},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.mugua.core.pay.mggoods.pojo.MgGoods">
+		update mg_goods
+		set NAME = #{name,jdbcType=VARCHAR},
+		DETAIL = #{detail,jdbcType=VARCHAR},
+		PHOTO1 = #{photo1,jdbcType=VARCHAR},
+		PHOTO2 = #{photo2,jdbcType=VARCHAR},
+		PHOTO3 = #{photo3,jdbcType=VARCHAR},
+		PHOTO4 = #{photo4,jdbcType=VARCHAR},
+		PHOTO5 = #{photo5,jdbcType=VARCHAR},
+		PHOTO6 = #{photo6,jdbcType=VARCHAR},
+		PHOTO7 = #{photo7,jdbcType=VARCHAR},
+		PRICE = #{price,jdbcType=DOUBLE},
+		NUM = #{num,jdbcType=INTEGER},
+		IS_SHOT = #{isShot,jdbcType=INTEGER},
+		IS_RECOMMEND = #{isRecommend,jdbcType=INTEGER},
+		MERCHANT = #{merchant,jdbcType=VARCHAR},
+		IS_CERTIFICATION = #{isCertification,jdbcType=VARCHAR},
+		PHONE = #{phone,jdbcType=VARCHAR},
+		IS_LIMITID = #{isLimitid,jdbcType=INTEGER},
+		LIMITID = #{limitid,jdbcType=INTEGER}
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+</mapper>

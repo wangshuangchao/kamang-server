@@ -1,0 +1,18 @@
+spring:
+  profiles:
+    active: pro
+logging:
+  level:
+    org.springframework.web: DEBUG
+    com.github.binarywang.demo.wxpay: DEBUG
+    com.github.binarywang.wxpay: DEBUG
+
+wechat:
+  pay:
+    appId: wx65b6dabc5d020744 
+    mchId: 1492002612
+    mchKey: 352f2e89b908c576b5d6af79b0fae9dd
+    subAppId:
+    subMchId:
+    keyPath: classpath:apiclient_cert.p12
+  

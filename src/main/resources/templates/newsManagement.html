@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" href="/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="/css/icon.css" media="all" />
+	<link rel="stylesheet" href="/css/newsManagement.css" media="all" />
+    <link rel="stylesheet" href="/css/public.css">
+</head>
+<body class="childrenBody">
+    <div class="newsHeaderTop">
+       新闻发布
+    </div>
+    <div class="newsContent">
+        <ul>
+            <li class="clearfix">
+                <span class="titleSpan">一级标题：</span>
+                <input type="text" class="titleInp" id="oneTittle">
+            </li>
+            <li  class="clearfix">
+                <span class="titleSpan">二级标题：</span>
+                <input type="text" class="titleInp"  id="twoTittle">
+            </li>
+            <li  class="clearfix">
+    			<span class="titleSpan">封面类型:</span>
+			    <form action="">
+			        <div class="articleType">
+			            <div class=" pubDivInp photoType">
+			                <input type="radio" name="articleType" id="imgNumbersOne" value="1" checked>
+			                <label for="imgNumbersOne">一张小图</label>
+			            </div>
+			            <div class=" pubDivInp photoType">
+			                <input type="radio" name="articleType" id="imgNumbersTwo" value="2">
+			                <label for="imgNumbersTwo">三张小图</label>
+			            </div>
+			            <div class=" pubDivInp photoType">
+			                <input type="radio" name="articleType" id="imgNumbersThree" value="3">
+			                <label for="imgNumbersThree">一张大图</label>
+			            </div>
+			        </div>
+			    </form>
+			</li>
+            <li class="clearfix">
+                <span class="titleSpan">封面图片：</span>
+                <form class="clearfix coverForm" name="form1" method="post" enctype="multipart/form-data" id="uploadFormCoverOne" action="##">
+                    <label for="coverFile1" class="coverImgLabel">
+                        <span>点击添加封面图片</span>
+                        <img src="" alt="" id="coverImg1">
+                    </label>
+                    <input type="file" name="file" id="coverFile1" style="display: none"/>
+                </form>
+                <form class="clearfix coverForm" name="form1" method="post" enctype="multipart/form-data" id="uploadFormCoverTwo" action="##">
+                    <label for="coverFile2" class="coverImgLabel">
+                        <span>点击添加封面图片</span>
+                        <img src="" alt="" id="coverImg2">
+                    </label>
+                    <input type="file" name="file" id="coverFile2" style="display: none"/>
+                </form>
+                <form class="clearfix coverForm" name="form1" method="post" enctype="multipart/form-data" id="uploadFormCoverThree" action="##">
+                    <label for="coverFile3" class="coverImgLabel">
+                        <span>点击添加封面图片</span>
+                        <img src="" alt="" id="coverImg3">
+                    </label>
+                    <input type="file" name="file" id="coverFile3" style="display: none"/>
+                </form>
+            </li>
+            <li  class="clearfix">
+                <span class="titleSpan">文章类型：</span>
+                <form action="">
+                    <div class="articleType">
+                        <div class=" pubDivInp newType">
+                            <input type="radio" name="articleType" id="dxAl" value="典型案例" checked>
+                            <label for="dxAl">典型案例</label>
+                        </div>
+                        <div class=" pubDivInp newType">
+                            <input type="radio" name="articleType" id="fxTs" value="风险提示">
+                            <label for="fxTs">风险提示</label>
+                        </div>
+                        <div class=" pubDivInp newType">
+                            <input type="radio" name="articleType" id="zdLy" value="重点领域">
+                            <label for="zdLy">重点领域</label>
+                        </div>
+                        <div class=" pubDivInp newType">
+                            <input type="radio" name="articleType" id="xyDsj" value="信用大数据">
+                            <label for="xyDsj">信用大数据</label>
+                        </div>
+                    </div>
+                </form>
+            </li>
+            <li  class="clearfix">
+                <span class="titleSpan clearfix">图片一：</span>
+                <form class="clearfix" name="form1" method="post" enctype="multipart/form-data" id="uploadFormOne" action="##">
+                    <label for="file1" class="imgLabel">
+                        <span>点击添加图片</span>
+                        <img src="" alt="" id="img1">
+                    </label>
+                    <input type="file" name="file" id="file1" style="display: none"/>
+                </form>
+            </li>
+            <li  class="clearfix">
+                <span class="titleSpan">正文一：</span>
+                <textarea name=""  id="oneText" cols="100" rows="5"></textarea>
+            </li>
+            <li  class="clearfix">
+                <span class="titleSpan clearfix">图片二：</span>
+                <form class="clearfix" name="form1" method="post" enctype="multipart/form-data" id="uploadFormTwo" action="##">
+                    <label for="file2" class="imgLabel">
+                        <span>点击添加图片</span>
+                        <img src="" alt="" id="img2">
+                    </label>
+                    <input type="file" name="file" id="file2" style="display: none"/>
+                </form>
+            </li>
+            <li  class="clearfix">
+                <span class="titleSpan">正文二：</span>
+                <textarea name="" id="twoText" cols="100" rows="5"></textarea>
+            </li>
+            <li  class="clearfix">
+                <span class="titleSpan clearfix">图片三：</span>
+                <form class="clearfix" name="form1" method="post" enctype="multipart/form-data" id="uploadFormThree" action="##">
+                    <label for="file3" class="imgLabel">
+                        <span>点击添加图片</span>
+                        <img src="" alt="" id="img3">
+                    </label>
+                    <input type="file" name="file" id="file3" style="display: none"/>
+                </form>
+            </li>
+            <li  class="clearfix">
+                <span class="titleSpan">正文三：</span>
+                <textarea name="" id="threeText" cols="100" rows="5"></textarea>
+            </li>
+            <li  class="clearfix">
+                <span class="titleSpan clearfix">图片四：</span>
+                <form class="clearfix" name="form1" method="post" enctype="multipart/form-data" id="uploadFormFour" action="##">
+                    <label for="file4" class="imgLabel">
+                        <span>点击添加图片</span>
+                        <img src="" alt="" id="img4">
+                    </label>
+                    <input type="file" name="file" id="file4" style="display: none"/>
+                </form>
+            </li>
+            <li  class="clearfix">
+                <span class="titleSpan">正文四：</span>
+                <textarea name="" id="fourText" cols="100" rows="5"></textarea>
+            </li>
+        </ul>
+    </div>
+    <div class="site-demo-button" style="text-align: center;">
+        <button class="layui-btn site-demo-layedit" data-type="content" id="releaseBtn">发布</button>
+    </div>
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/layui/layui.js"></script>
+    <script type="text/javascript" src="/js/newsManagement.js"></script>
+</body>
+</html>

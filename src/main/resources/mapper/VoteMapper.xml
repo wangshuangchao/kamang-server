@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mugua.core.vote.mapper.VoteMapper" >
+  <resultMap id="BaseResultMap" type="com.mugua.core.vote.pojo.Vote" >
+    <id column="wechatid" property="wechatid" jdbcType="VARCHAR" />
+    <result column="poll" property="poll" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    wechatid, poll
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mugua.core.vote.pojo.VoteExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from vote
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from vote
+    where wechatid = #{wechatid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from vote
+    where wechatid = #{wechatid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mugua.core.vote.pojo.VoteExample" >
+    delete from vote
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mugua.core.vote.pojo.Vote" >
+    insert into vote (wechatid, poll)
+    values (#{wechatid,jdbcType=VARCHAR}, #{poll,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mugua.core.vote.pojo.Vote" >
+    insert into vote
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="wechatid != null" >
+        wechatid,
+      </if>
+      <if test="poll != null" >
+        poll,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="wechatid != null" >
+        #{wechatid,jdbcType=VARCHAR},
+      </if>
+      <if test="poll != null" >
+        #{poll,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mugua.core.vote.pojo.VoteExample" resultType="java.lang.Integer" >
+    select count(*) from vote
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update vote
+    <set >
+      <if test="record.wechatid != null" >
+        wechatid = #{record.wechatid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.poll != null" >
+        poll = #{record.poll,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update vote
+    set wechatid = #{record.wechatid,jdbcType=VARCHAR},
+      poll = #{record.poll,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mugua.core.vote.pojo.Vote" >
+    update vote
+    <set >
+      <if test="poll != null" >
+        poll = #{poll,jdbcType=INTEGER},
+      </if>
+    </set>
+    where wechatid = #{wechatid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mugua.core.vote.pojo.Vote" >
+    update vote
+    set poll = #{poll,jdbcType=INTEGER}
+    where wechatid = #{wechatid,jdbcType=VARCHAR}
+  </update>
+</mapper>

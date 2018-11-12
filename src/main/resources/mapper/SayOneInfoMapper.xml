@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mugua.core.sayone.mapper.SayOneInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.mugua.core.sayone.pojo.SayOneInfo" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="TITLE_ONE" property="titleOne" jdbcType="VARCHAR" />
+    <result column="TITLE_TWO" property="titleTwo" jdbcType="VARCHAR" />
+    <result column="COVER_PHOTO_ONE_URL" property="coverPhotoOneUrl" jdbcType="VARCHAR" />
+    <result column="COVER_PHOTO_TWO_URL" property="coverPhotoTwoUrl" jdbcType="VARCHAR" />
+    <result column="COVER_PHOTO_THR_URL" property="coverPhotoThrUrl" jdbcType="VARCHAR" />
+    <result column="COVER_PHOTO_FOR_URL" property="coverPhotoForUrl" jdbcType="VARCHAR" />
+    <result column="PHOTO_TYPE" property="photoType" jdbcType="VARCHAR" />
+    <result column="NEW_TYPE" property="newType" jdbcType="VARCHAR" />
+    <result column="BROWSE_NUMBER" property="browseNumber" jdbcType="INTEGER" />
+    <result column="CONT_PHOTO_ONE_URL" property="contPhotoOneUrl" jdbcType="VARCHAR" />
+    <result column="CONT_PHOTO_TWO_URL" property="contPhotoTwoUrl" jdbcType="VARCHAR" />
+    <result column="CONT_PHOTO_THR_URL" property="contPhotoThrUrl" jdbcType="VARCHAR" />
+    <result column="CONT_PHOTO_FOR_URL" property="contPhotoForUrl" jdbcType="VARCHAR" />
+    <result column="CONT_TEXT_ONE" property="contTextOne" jdbcType="VARCHAR" />
+    <result column="CONT_TEXT_TWO" property="contTextTwo" jdbcType="VARCHAR" />
+    <result column="CONT_TEXT_THR" property="contTextThr" jdbcType="VARCHAR" />
+    <result column="CONT_TEXT_FOR" property="contTextFor" jdbcType="VARCHAR" />
+    <result column="EXT_ONE" property="extOne" jdbcType="VARCHAR" />
+    <result column="EXT_TWO" property="extTwo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, TITLE_ONE, TITLE_TWO, COVER_PHOTO_ONE_URL, COVER_PHOTO_TWO_URL, COVER_PHOTO_THR_URL, 
+    COVER_PHOTO_FOR_URL, PHOTO_TYPE, NEW_TYPE, BROWSE_NUMBER, CONT_PHOTO_ONE_URL, CONT_PHOTO_TWO_URL, 
+    CONT_PHOTO_THR_URL, CONT_PHOTO_FOR_URL, CONT_TEXT_ONE, CONT_TEXT_TWO, CONT_TEXT_THR, 
+    CONT_TEXT_FOR, EXT_ONE, EXT_TWO
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mugua.core.sayone.pojo.SayOneInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from say_one_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from say_one_info
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from say_one_info
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mugua.core.sayone.pojo.SayOneInfoExample" >
+    delete from say_one_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mugua.core.sayone.pojo.SayOneInfo" >
+    insert into say_one_info (ID, TITLE_ONE, TITLE_TWO, 
+      COVER_PHOTO_ONE_URL, COVER_PHOTO_TWO_URL, COVER_PHOTO_THR_URL, 
+      COVER_PHOTO_FOR_URL, PHOTO_TYPE, NEW_TYPE, 
+      BROWSE_NUMBER, CONT_PHOTO_ONE_URL, CONT_PHOTO_TWO_URL, 
+      CONT_PHOTO_THR_URL, CONT_PHOTO_FOR_URL, CONT_TEXT_ONE, 
+      CONT_TEXT_TWO, CONT_TEXT_THR, CONT_TEXT_FOR, 
+      EXT_ONE, EXT_TWO)
+    values (#{id,jdbcType=VARCHAR}, #{titleOne,jdbcType=VARCHAR}, #{titleTwo,jdbcType=VARCHAR}, 
+      #{coverPhotoOneUrl,jdbcType=VARCHAR}, #{coverPhotoTwoUrl,jdbcType=VARCHAR}, #{coverPhotoThrUrl,jdbcType=VARCHAR}, 
+      #{coverPhotoForUrl,jdbcType=VARCHAR}, #{photoType,jdbcType=VARCHAR}, #{newType,jdbcType=VARCHAR}, 
+      #{browseNumber,jdbcType=INTEGER}, #{contPhotoOneUrl,jdbcType=VARCHAR}, #{contPhotoTwoUrl,jdbcType=VARCHAR}, 
+      #{contPhotoThrUrl,jdbcType=VARCHAR}, #{contPhotoForUrl,jdbcType=VARCHAR}, #{contTextOne,jdbcType=VARCHAR}, 
+      #{contTextTwo,jdbcType=VARCHAR}, #{contTextThr,jdbcType=VARCHAR}, #{contTextFor,jdbcType=VARCHAR}, 
+      #{extOne,jdbcType=VARCHAR}, #{extTwo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mugua.core.sayone.pojo.SayOneInfo" >
+    insert into say_one_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="titleOne != null" >
+        TITLE_ONE,
+      </if>
+      <if test="titleTwo != null" >
+        TITLE_TWO,
+      </if>
+      <if test="coverPhotoOneUrl != null" >
+        COVER_PHOTO_ONE_URL,
+      </if>
+      <if test="coverPhotoTwoUrl != null" >
+        COVER_PHOTO_TWO_URL,
+      </if>
+      <if test="coverPhotoThrUrl != null" >
+        COVER_PHOTO_THR_URL,
+      </if>
+      <if test="coverPhotoForUrl != null" >
+        COVER_PHOTO_FOR_URL,
+      </if>
+      <if test="photoType != null" >
+        PHOTO_TYPE,
+      </if>
+      <if test="newType != null" >
+        NEW_TYPE,
+      </if>
+      <if test="browseNumber != null" >
+        BROWSE_NUMBER,
+      </if>
+      <if test="contPhotoOneUrl != null" >
+        CONT_PHOTO_ONE_URL,
+      </if>
+      <if test="contPhotoTwoUrl != null" >
+        CONT_PHOTO_TWO_URL,
+      </if>
+      <if test="contPhotoThrUrl != null" >
+        CONT_PHOTO_THR_URL,
+      </if>
+      <if test="contPhotoForUrl != null" >
+        CONT_PHOTO_FOR_URL,
+      </if>
+      <if test="contTextOne != null" >
+        CONT_TEXT_ONE,
+      </if>
+      <if test="contTextTwo != null" >
+        CONT_TEXT_TWO,
+      </if>
+      <if test="contTextThr != null" >
+        CONT_TEXT_THR,
+      </if>
+      <if test="contTextFor != null" >
+        CONT_TEXT_FOR,
+      </if>
+      <if test="extOne != null" >
+        EXT_ONE,
+      </if>
+      <if test="extTwo != null" >
+        EXT_TWO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="titleOne != null" >
+        #{titleOne,jdbcType=VARCHAR},
+      </if>
+      <if test="titleTwo != null" >
+        #{titleTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="coverPhotoOneUrl != null" >
+        #{coverPhotoOneUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="coverPhotoTwoUrl != null" >
+        #{coverPhotoTwoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="coverPhotoThrUrl != null" >
+        #{coverPhotoThrUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="coverPhotoForUrl != null" >
+        #{coverPhotoForUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="photoType != null" >
+        #{photoType,jdbcType=VARCHAR},
+      </if>
+      <if test="newType != null" >
+        #{newType,jdbcType=VARCHAR},
+      </if>
+      <if test="browseNumber != null" >
+        #{browseNumber,jdbcType=INTEGER},
+      </if>
+      <if test="contPhotoOneUrl != null" >
+        #{contPhotoOneUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="contPhotoTwoUrl != null" >
+        #{contPhotoTwoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="contPhotoThrUrl != null" >
+        #{contPhotoThrUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="contPhotoForUrl != null" >
+        #{contPhotoForUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="contTextOne != null" >
+        #{contTextOne,jdbcType=VARCHAR},
+      </if>
+      <if test="contTextTwo != null" >
+        #{contTextTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="contTextThr != null" >
+        #{contTextThr,jdbcType=VARCHAR},
+      </if>
+      <if test="contTextFor != null" >
+        #{contTextFor,jdbcType=VARCHAR},
+      </if>
+      <if test="extOne != null" >
+        #{extOne,jdbcType=VARCHAR},
+      </if>
+      <if test="extTwo != null" >
+        #{extTwo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mugua.core.sayone.pojo.SayOneInfoExample" resultType="java.lang.Integer" >
+    select count(*) from say_one_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update say_one_info
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.titleOne != null" >
+        TITLE_ONE = #{record.titleOne,jdbcType=VARCHAR},
+      </if>
+      <if test="record.titleTwo != null" >
+        TITLE_TWO = #{record.titleTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.coverPhotoOneUrl != null" >
+        COVER_PHOTO_ONE_URL = #{record.coverPhotoOneUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.coverPhotoTwoUrl != null" >
+        COVER_PHOTO_TWO_URL = #{record.coverPhotoTwoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.coverPhotoThrUrl != null" >
+        COVER_PHOTO_THR_URL = #{record.coverPhotoThrUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.coverPhotoForUrl != null" >
+        COVER_PHOTO_FOR_URL = #{record.coverPhotoForUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.photoType != null" >
+        PHOTO_TYPE = #{record.photoType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.newType != null" >
+        NEW_TYPE = #{record.newType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.browseNumber != null" >
+        BROWSE_NUMBER = #{record.browseNumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.contPhotoOneUrl != null" >
+        CONT_PHOTO_ONE_URL = #{record.contPhotoOneUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contPhotoTwoUrl != null" >
+        CONT_PHOTO_TWO_URL = #{record.contPhotoTwoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contPhotoThrUrl != null" >
+        CONT_PHOTO_THR_URL = #{record.contPhotoThrUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contPhotoForUrl != null" >
+        CONT_PHOTO_FOR_URL = #{record.contPhotoForUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contTextOne != null" >
+        CONT_TEXT_ONE = #{record.contTextOne,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contTextTwo != null" >
+        CONT_TEXT_TWO = #{record.contTextTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contTextThr != null" >
+        CONT_TEXT_THR = #{record.contTextThr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contTextFor != null" >
+        CONT_TEXT_FOR = #{record.contTextFor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extOne != null" >
+        EXT_ONE = #{record.extOne,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extTwo != null" >
+        EXT_TWO = #{record.extTwo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update say_one_info
+    set ID = #{record.id,jdbcType=VARCHAR},
+      TITLE_ONE = #{record.titleOne,jdbcType=VARCHAR},
+      TITLE_TWO = #{record.titleTwo,jdbcType=VARCHAR},
+      COVER_PHOTO_ONE_URL = #{record.coverPhotoOneUrl,jdbcType=VARCHAR},
+      COVER_PHOTO_TWO_URL = #{record.coverPhotoTwoUrl,jdbcType=VARCHAR},
+      COVER_PHOTO_THR_URL = #{record.coverPhotoThrUrl,jdbcType=VARCHAR},
+      COVER_PHOTO_FOR_URL = #{record.coverPhotoForUrl,jdbcType=VARCHAR},
+      PHOTO_TYPE = #{record.photoType,jdbcType=VARCHAR},
+      NEW_TYPE = #{record.newType,jdbcType=VARCHAR},
+      BROWSE_NUMBER = #{record.browseNumber,jdbcType=INTEGER},
+      CONT_PHOTO_ONE_URL = #{record.contPhotoOneUrl,jdbcType=VARCHAR},
+      CONT_PHOTO_TWO_URL = #{record.contPhotoTwoUrl,jdbcType=VARCHAR},
+      CONT_PHOTO_THR_URL = #{record.contPhotoThrUrl,jdbcType=VARCHAR},
+      CONT_PHOTO_FOR_URL = #{record.contPhotoForUrl,jdbcType=VARCHAR},
+      CONT_TEXT_ONE = #{record.contTextOne,jdbcType=VARCHAR},
+      CONT_TEXT_TWO = #{record.contTextTwo,jdbcType=VARCHAR},
+      CONT_TEXT_THR = #{record.contTextThr,jdbcType=VARCHAR},
+      CONT_TEXT_FOR = #{record.contTextFor,jdbcType=VARCHAR},
+      EXT_ONE = #{record.extOne,jdbcType=VARCHAR},
+      EXT_TWO = #{record.extTwo,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mugua.core.sayone.pojo.SayOneInfo" >
+    update say_one_info
+    <set >
+      <if test="titleOne != null" >
+        TITLE_ONE = #{titleOne,jdbcType=VARCHAR},
+      </if>
+      <if test="titleTwo != null" >
+        TITLE_TWO = #{titleTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="coverPhotoOneUrl != null" >
+        COVER_PHOTO_ONE_URL = #{coverPhotoOneUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="coverPhotoTwoUrl != null" >
+        COVER_PHOTO_TWO_URL = #{coverPhotoTwoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="coverPhotoThrUrl != null" >
+        COVER_PHOTO_THR_URL = #{coverPhotoThrUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="coverPhotoForUrl != null" >
+        COVER_PHOTO_FOR_URL = #{coverPhotoForUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="photoType != null" >
+        PHOTO_TYPE = #{photoType,jdbcType=VARCHAR},
+      </if>
+      <if test="newType != null" >
+        NEW_TYPE = #{newType,jdbcType=VARCHAR},
+      </if>
+      <if test="browseNumber != null" >
+        BROWSE_NUMBER = #{browseNumber,jdbcType=INTEGER},
+      </if>
+      <if test="contPhotoOneUrl != null" >
+        CONT_PHOTO_ONE_URL = #{contPhotoOneUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="contPhotoTwoUrl != null" >
+        CONT_PHOTO_TWO_URL = #{contPhotoTwoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="contPhotoThrUrl != null" >
+        CONT_PHOTO_THR_URL = #{contPhotoThrUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="contPhotoForUrl != null" >
+        CONT_PHOTO_FOR_URL = #{contPhotoForUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="contTextOne != null" >
+        CONT_TEXT_ONE = #{contTextOne,jdbcType=VARCHAR},
+      </if>
+      <if test="contTextTwo != null" >
+        CONT_TEXT_TWO = #{contTextTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="contTextThr != null" >
+        CONT_TEXT_THR = #{contTextThr,jdbcType=VARCHAR},
+      </if>
+      <if test="contTextFor != null" >
+        CONT_TEXT_FOR = #{contTextFor,jdbcType=VARCHAR},
+      </if>
+      <if test="extOne != null" >
+        EXT_ONE = #{extOne,jdbcType=VARCHAR},
+      </if>
+      <if test="extTwo != null" >
+        EXT_TWO = #{extTwo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mugua.core.sayone.pojo.SayOneInfo" >
+    update say_one_info
+    set TITLE_ONE = #{titleOne,jdbcType=VARCHAR},
+      TITLE_TWO = #{titleTwo,jdbcType=VARCHAR},
+      COVER_PHOTO_ONE_URL = #{coverPhotoOneUrl,jdbcType=VARCHAR},
+      COVER_PHOTO_TWO_URL = #{coverPhotoTwoUrl,jdbcType=VARCHAR},
+      COVER_PHOTO_THR_URL = #{coverPhotoThrUrl,jdbcType=VARCHAR},
+      COVER_PHOTO_FOR_URL = #{coverPhotoForUrl,jdbcType=VARCHAR},
+      PHOTO_TYPE = #{photoType,jdbcType=VARCHAR},
+      NEW_TYPE = #{newType,jdbcType=VARCHAR},
+      BROWSE_NUMBER = #{browseNumber,jdbcType=INTEGER},
+      CONT_PHOTO_ONE_URL = #{contPhotoOneUrl,jdbcType=VARCHAR},
+      CONT_PHOTO_TWO_URL = #{contPhotoTwoUrl,jdbcType=VARCHAR},
+      CONT_PHOTO_THR_URL = #{contPhotoThrUrl,jdbcType=VARCHAR},
+      CONT_PHOTO_FOR_URL = #{contPhotoForUrl,jdbcType=VARCHAR},
+      CONT_TEXT_ONE = #{contTextOne,jdbcType=VARCHAR},
+      CONT_TEXT_TWO = #{contTextTwo,jdbcType=VARCHAR},
+      CONT_TEXT_THR = #{contTextThr,jdbcType=VARCHAR},
+      CONT_TEXT_FOR = #{contTextFor,jdbcType=VARCHAR},
+      EXT_ONE = #{extOne,jdbcType=VARCHAR},
+      EXT_TWO = #{extTwo,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

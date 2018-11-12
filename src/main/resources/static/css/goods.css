@@ -1,0 +1,32 @@
+body,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td{margin:0;padding:0;}
+body{background:#f4f4f4;font-size:0.25rem;}
+table{border-collapse:collapse;border-spacing:0;}
+fieldset,img{border:0 none;}
+address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}
+strong{font-weight:800;}
+ol,ul,li{list-style:none outside none;}
+caption,th{text-align:left;}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}
+i{display: inline-block}
+body{background-color: #f4f4f4;overflow-x: hidden;}
+.topDiv{width:100%;height:0.8rem;background-color: #ff932b;font-size: 0.34rem;line-height: 0.8rem;text-align: center;color:#ffffff;}
+.topDiv a{width: 0.25rem; height: 0.4rem; position: absolute; left: 10px; top: 10px; background-image: url(/images/zuo.png); background-size: cover;}
+.imgDiv{width:100%;height:5rem;}
+.imgDiv img{height:100%;}
+#swiper-pagination{border-radius: 25px; width: 0.8rem; height: 0.4rem; line-height: 0.4rem; background-color: rgba(0, 0, 0, 0.3); color: #ffffff;}
+.detailsDiv{width:100%;height:2.84rem;background-color: #ffffff;padding-top: 0.4rem;padding-left: 0.23rem; box-sizing: border-box;}
+.commodityName{font-size: 0.31rem;} .commodityMoney{font-size: 0.39rem;margin:0.3rem 0;color: red;} .commodityStock{font-size: 0.26rem;}
+.briefIntroductionDiv{width: 100%; height: 1.72rem; background-color: #ffffff; margin-bottom: 0.24rem; margin-top: 0.24rem; padding-top: 0.25rem; overflow-x: hidden;}
+.briefIntroductionDiv p{width: 94%;margin: 0 auto;line-height: 0.6rem;font-size:0.3rem;}
+.imgListDiv{width:100%; background-color: #ffffff; padding:0.1px; text-align: center; color:#ff932b; font-size:0.28rem; overflow-x: hidden;margin-bottom:0.98rem}
+.imgListDiv p{position: relative; width:100px; margin:0.4rem auto 0.6rem auto;font-size:0.4rem;}
+.imgListDiv p span{position: absolute; display: inline-block; width: 0.48rem; height: 0.06rem; background-color: #ff932b; bottom:-0.22rem; left: 37%; border-radius: 5px;}
+.imgListDiv li{width:92%;margin: 15px auto;}
+.imgListDiv li img{width:100%; height:100%}
+.footerDiv{width:100%; height:1rem; line-height: 1rem; text-align: center; background-color:#ff932b; font-size: 0.32rem; color: #ffffff; position: fixed; bottom:0; left:0; z-index: 2;}
+.footerDiv i{display: inline-block; width: 0.5rem; height: 0.44rem; background-image: url(/images/goods.png); background-size: 100% 100%; vertical-align: middle; margin-right:0.06rem;}
+.qrCode{width: 100%;height: 7.5rem;position: fixed;bottom: 0px;z-index: 3;display: none;background-color:#ffffff}
+.qrCode p{text-align: center;margin-top: 0.7rem;font-size: 0.25rem;}
+.qrCodeDiv{width: 3rem;height: 3rem;margin: 0.8rem auto 0;}
+.qrCodeDiv img{width:100%;height:100%;}
+.qrCode .offDivI{width:6.2rem;height:0.8rem;background-color:#ffc140;border-radius: 35px;font-size:0.3rem;font-weight: 600;margin-left: auto;margin-right: auto;color: #ffffff;letter-spacing: 2px;line-height: 0.8rem;}

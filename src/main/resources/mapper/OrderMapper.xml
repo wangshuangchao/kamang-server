@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mugua.core.pay.order.mapper.OrderMapper" >
+  <resultMap id="BaseResultMap" type="com.mugua.core.pay.order.pojo.Order" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="GOODS_NAME" property="goodsName" jdbcType="VARCHAR" />
+    <result column="GOODS_DETAIL" property="goodsDetail" jdbcType="VARCHAR" />
+    <result column="GOODS_NUM" property="goodsNum" jdbcType="INTEGER" />
+    <result column="GOODS_PHOTO" property="goodsPhoto" jdbcType="VARCHAR" />
+    <result column="TOTAL_FEE" property="totalFee" jdbcType="DOUBLE" />
+    <result column="GOODS_PRICE" property="goodsPrice" jdbcType="DOUBLE" />
+    <result column="RECEIVER" property="receiver" jdbcType="VARCHAR" />
+    <result column="RECEIVER_ADDRESS" property="receiverAddress" jdbcType="VARCHAR" />
+    <result column="RECEIVER_ZIP_CODE" property="receiverZipCode" jdbcType="VARCHAR" />
+    <result column="RECEIVER_PHONE" property="receiverPhone" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="PAYMENT_TYPE" property="paymentType" jdbcType="VARCHAR" />
+    <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+    <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+    <result column="SHIPPING_CODE" property="shippingCode" jdbcType="VARCHAR" />
+    <result column="SHIPPING_NAME" property="shippingName" jdbcType="VARCHAR" />
+    <result column="SELLERID" property="sellerid" jdbcType="VARCHAR" />
+    <result column="PAY_STATUS" property="payStatus" jdbcType="VARCHAR" />
+    <result column="EXT" property="ext" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, GOODS_NAME, GOODS_DETAIL, GOODS_NUM, GOODS_PHOTO, TOTAL_FEE, GOODS_PRICE, RECEIVER, 
+    RECEIVER_ADDRESS, RECEIVER_ZIP_CODE, RECEIVER_PHONE, CREATE_TIME, PAYMENT_TYPE, USER_ID, 
+    USER_NAME, SHIPPING_CODE, SHIPPING_NAME, SELLERID, PAY_STATUS, EXT
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mugua.core.pay.order.pojo.OrderExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from order
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from order
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mugua.core.pay.order.pojo.OrderExample" >
+    delete from order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mugua.core.pay.order.pojo.Order" >
+    insert into order (ID, GOODS_NAME, GOODS_DETAIL, 
+      GOODS_NUM, GOODS_PHOTO, TOTAL_FEE, 
+      GOODS_PRICE, RECEIVER, RECEIVER_ADDRESS, 
+      RECEIVER_ZIP_CODE, RECEIVER_PHONE, CREATE_TIME, 
+      PAYMENT_TYPE, USER_ID, USER_NAME, 
+      SHIPPING_CODE, SHIPPING_NAME, SELLERID, 
+      PAY_STATUS, EXT)
+    values (#{id,jdbcType=BIGINT}, #{goodsName,jdbcType=VARCHAR}, #{goodsDetail,jdbcType=VARCHAR}, 
+      #{goodsNum,jdbcType=INTEGER}, #{goodsPhoto,jdbcType=VARCHAR}, #{totalFee,jdbcType=DOUBLE}, 
+      #{goodsPrice,jdbcType=DOUBLE}, #{receiver,jdbcType=VARCHAR}, #{receiverAddress,jdbcType=VARCHAR}, 
+      #{receiverZipCode,jdbcType=VARCHAR}, #{receiverPhone,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{paymentType,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
+      #{shippingCode,jdbcType=VARCHAR}, #{shippingName,jdbcType=VARCHAR}, #{sellerid,jdbcType=VARCHAR}, 
+      #{payStatus,jdbcType=VARCHAR}, #{ext,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mugua.core.pay.order.pojo.Order" >
+    insert into order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="goodsName != null" >
+        GOODS_NAME,
+      </if>
+      <if test="goodsDetail != null" >
+        GOODS_DETAIL,
+      </if>
+      <if test="goodsNum != null" >
+        GOODS_NUM,
+      </if>
+      <if test="goodsPhoto != null" >
+        GOODS_PHOTO,
+      </if>
+      <if test="totalFee != null" >
+        TOTAL_FEE,
+      </if>
+      <if test="goodsPrice != null" >
+        GOODS_PRICE,
+      </if>
+      <if test="receiver != null" >
+        RECEIVER,
+      </if>
+      <if test="receiverAddress != null" >
+        RECEIVER_ADDRESS,
+      </if>
+      <if test="receiverZipCode != null" >
+        RECEIVER_ZIP_CODE,
+      </if>
+      <if test="receiverPhone != null" >
+        RECEIVER_PHONE,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="paymentType != null" >
+        PAYMENT_TYPE,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="userName != null" >
+        USER_NAME,
+      </if>
+      <if test="shippingCode != null" >
+        SHIPPING_CODE,
+      </if>
+      <if test="shippingName != null" >
+        SHIPPING_NAME,
+      </if>
+      <if test="sellerid != null" >
+        SELLERID,
+      </if>
+      <if test="payStatus != null" >
+        PAY_STATUS,
+      </if>
+      <if test="ext != null" >
+        EXT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="goodsName != null" >
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsDetail != null" >
+        #{goodsDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsNum != null" >
+        #{goodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="goodsPhoto != null" >
+        #{goodsPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="totalFee != null" >
+        #{totalFee,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsPrice != null" >
+        #{goodsPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="receiver != null" >
+        #{receiver,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverAddress != null" >
+        #{receiverAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverZipCode != null" >
+        #{receiverZipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverPhone != null" >
+        #{receiverPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paymentType != null" >
+        #{paymentType,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingCode != null" >
+        #{shippingCode,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingName != null" >
+        #{shippingName,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerid != null" >
+        #{sellerid,jdbcType=VARCHAR},
+      </if>
+      <if test="payStatus != null" >
+        #{payStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="ext != null" >
+        #{ext,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mugua.core.pay.order.pojo.OrderExample" resultType="java.lang.Integer" >
+    select count(*) from order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update order
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.goodsName != null" >
+        GOODS_NAME = #{record.goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsDetail != null" >
+        GOODS_DETAIL = #{record.goodsDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsNum != null" >
+        GOODS_NUM = #{record.goodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsPhoto != null" >
+        GOODS_PHOTO = #{record.goodsPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="record.totalFee != null" >
+        TOTAL_FEE = #{record.totalFee,jdbcType=DOUBLE},
+      </if>
+      <if test="record.goodsPrice != null" >
+        GOODS_PRICE = #{record.goodsPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.receiver != null" >
+        RECEIVER = #{record.receiver,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiverAddress != null" >
+        RECEIVER_ADDRESS = #{record.receiverAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiverZipCode != null" >
+        RECEIVER_ZIP_CODE = #{record.receiverZipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiverPhone != null" >
+        RECEIVER_PHONE = #{record.receiverPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.paymentType != null" >
+        PAYMENT_TYPE = #{record.paymentType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId != null" >
+        USER_ID = #{record.userId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userName != null" >
+        USER_NAME = #{record.userName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shippingCode != null" >
+        SHIPPING_CODE = #{record.shippingCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shippingName != null" >
+        SHIPPING_NAME = #{record.shippingName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellerid != null" >
+        SELLERID = #{record.sellerid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payStatus != null" >
+        PAY_STATUS = #{record.payStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ext != null" >
+        EXT = #{record.ext,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update order
+    set ID = #{record.id,jdbcType=BIGINT},
+      GOODS_NAME = #{record.goodsName,jdbcType=VARCHAR},
+      GOODS_DETAIL = #{record.goodsDetail,jdbcType=VARCHAR},
+      GOODS_NUM = #{record.goodsNum,jdbcType=INTEGER},
+      GOODS_PHOTO = #{record.goodsPhoto,jdbcType=VARCHAR},
+      TOTAL_FEE = #{record.totalFee,jdbcType=DOUBLE},
+      GOODS_PRICE = #{record.goodsPrice,jdbcType=DOUBLE},
+      RECEIVER = #{record.receiver,jdbcType=VARCHAR},
+      RECEIVER_ADDRESS = #{record.receiverAddress,jdbcType=VARCHAR},
+      RECEIVER_ZIP_CODE = #{record.receiverZipCode,jdbcType=VARCHAR},
+      RECEIVER_PHONE = #{record.receiverPhone,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      PAYMENT_TYPE = #{record.paymentType,jdbcType=VARCHAR},
+      USER_ID = #{record.userId,jdbcType=VARCHAR},
+      USER_NAME = #{record.userName,jdbcType=VARCHAR},
+      SHIPPING_CODE = #{record.shippingCode,jdbcType=VARCHAR},
+      SHIPPING_NAME = #{record.shippingName,jdbcType=VARCHAR},
+      SELLERID = #{record.sellerid,jdbcType=VARCHAR},
+      PAY_STATUS = #{record.payStatus,jdbcType=VARCHAR},
+      EXT = #{record.ext,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mugua.core.pay.order.pojo.Order" >
+    update order
+    <set >
+      <if test="goodsName != null" >
+        GOODS_NAME = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsDetail != null" >
+        GOODS_DETAIL = #{goodsDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsNum != null" >
+        GOODS_NUM = #{goodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="goodsPhoto != null" >
+        GOODS_PHOTO = #{goodsPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="totalFee != null" >
+        TOTAL_FEE = #{totalFee,jdbcType=DOUBLE},
+      </if>
+      <if test="goodsPrice != null" >
+        GOODS_PRICE = #{goodsPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="receiver != null" >
+        RECEIVER = #{receiver,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverAddress != null" >
+        RECEIVER_ADDRESS = #{receiverAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverZipCode != null" >
+        RECEIVER_ZIP_CODE = #{receiverZipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverPhone != null" >
+        RECEIVER_PHONE = #{receiverPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paymentType != null" >
+        PAYMENT_TYPE = #{paymentType,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingCode != null" >
+        SHIPPING_CODE = #{shippingCode,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingName != null" >
+        SHIPPING_NAME = #{shippingName,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerid != null" >
+        SELLERID = #{sellerid,jdbcType=VARCHAR},
+      </if>
+      <if test="payStatus != null" >
+        PAY_STATUS = #{payStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="ext != null" >
+        EXT = #{ext,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mugua.core.pay.order.pojo.Order" >
+    update order
+    set GOODS_NAME = #{goodsName,jdbcType=VARCHAR},
+      GOODS_DETAIL = #{goodsDetail,jdbcType=VARCHAR},
+      GOODS_NUM = #{goodsNum,jdbcType=INTEGER},
+      GOODS_PHOTO = #{goodsPhoto,jdbcType=VARCHAR},
+      TOTAL_FEE = #{totalFee,jdbcType=DOUBLE},
+      GOODS_PRICE = #{goodsPrice,jdbcType=DOUBLE},
+      RECEIVER = #{receiver,jdbcType=VARCHAR},
+      RECEIVER_ADDRESS = #{receiverAddress,jdbcType=VARCHAR},
+      RECEIVER_ZIP_CODE = #{receiverZipCode,jdbcType=VARCHAR},
+      RECEIVER_PHONE = #{receiverPhone,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      PAYMENT_TYPE = #{paymentType,jdbcType=VARCHAR},
+      USER_ID = #{userId,jdbcType=VARCHAR},
+      USER_NAME = #{userName,jdbcType=VARCHAR},
+      SHIPPING_CODE = #{shippingCode,jdbcType=VARCHAR},
+      SHIPPING_NAME = #{shippingName,jdbcType=VARCHAR},
+      SELLERID = #{sellerid,jdbcType=VARCHAR},
+      PAY_STATUS = #{payStatus,jdbcType=VARCHAR},
+      EXT = #{ext,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
